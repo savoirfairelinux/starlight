@@ -11,28 +11,37 @@
 # GNU Affero General Public License for more details.
 
 from django.db import models
+from django.db.models.deletion import SET
 
 
-class Employee(models.Model):
-    name = models.CharField(max_length=75)
-    password = models.CharField(max_length=75)
-    email = models.CharField(max_length=75)
+class Experience(models.Model):
+    experience_level = models.CharField(max_length=60)
 
+
+class Interest(models.Model):
+    interest_level = models.CharField(max_length=60)
+
+
+class Competency(models.Model):
+    name = models.CharField(max_length=60)
+    interest = models.ForeignKey(Interest, on_delete=SET('Not interested'))
+    experience = models.ForeignKey(Experience, on_delete=SET('Less than two years'))
 
     def __repr__(self):
-        return '<User: %s>' % self.name
+        return '<Competency: %s>' % self.name
 
     def __str__(self):
         return self.name
 
 
-
-class Compentency(models.Model):
-    name = models.CharField(max_length=75)
-    interest = models.IntegerField  # 1: low interest, 4: high interest
+class Employee(models.Model):
+    name = models.CharField(max_length=60)
+    password = models.CharField(max_length=60)
+    email = models.CharField(max_length=75)
+    competencies = models.ManyToManyField(Competency, blank=True, related_name='employees')
 
     def __repr__(self):
-        return '<Compentency: %s>' % (self.name)
+        return '<User: %s>' % self.name
 
     def __str__(self):
         return self.name
