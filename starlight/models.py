@@ -11,27 +11,31 @@
 # GNU Affero General Public License for more details.
 
 from django.db import models
-from django.db.models.deletion import SET
+from django.db.models.deletion import CASCADE
 
 
-class Experience(models.Model):
-    experience_level = models.CharField(max_length=60)
-
-
-class Interest(models.Model):
-    interest_level = models.CharField(max_length=60)
+class Skill(models.Model):
+    name = models.CharField(max_length=60)
+    is_technical = models.BooleanField(default=True)
 
 
 class Competency(models.Model):
-    name = models.CharField(max_length=60)
-    interest = models.ForeignKey(Interest, on_delete=SET('Not interested'))
-    experience = models.ForeignKey(Experience, on_delete=SET('Less than two years'))
-
-    def __repr__(self):
-        return '<Competency: %s>' % self.name
-
-    def __str__(self):
-        return self.name
+    INTEREST_CHOICES = (
+        ('1', 'Not interested'),
+        ('2', 'Interested to learn'),
+        ('3', 'Competent'),
+        ('4', 'Can share knowledge')
+    )
+    EXPERIENCE_CHOICES = (
+        ('0-2', 'Less than two years'),
+        ('2-4', 'Two to four years'),
+        ('4-6', 'Four to six years'),
+        ('6-10', 'Six to ten years'),
+        ('10+', 'More than ten years')
+    )
+    skill = models.ForeignKey(Skill, null=True, on_delete=CASCADE)
+    interest = models.CharField(max_length=50, choices=INTEREST_CHOICES)
+    experience = models.CharField(max_length=50, choices=EXPERIENCE_CHOICES)
 
 
 class Employee(models.Model):

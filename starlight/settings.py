@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import json
 import os
+import sys
+
 import pathlib
 
 from django.core.exceptions import ImproperlyConfigured
@@ -53,9 +55,13 @@ ENVSETTINGS_FILENAME = '.env.json'
 ENVSETTINGS_NIL = object()
 
 # JSON-based environment module
-with open(os.environ.get('DJANGO_ENVSETTINGS_FILEPATH') or
-          str(INSTALL_PATH / ENVSETTINGS_FILENAME)) as f:
-    secrets = json.loads(f.read())
+try:
+    with open(os.environ.get('DJANGO_ENVSETTINGS_FILEPATH') or
+              str(INSTALL_PATH / ENVSETTINGS_FILENAME)) as f:
+        secrets = json.loads(f.read())
+except IOError:
+    print("Error opening environment file!")
+    sys.exit(1)
 
 
 def get_envsetting(setting, default=ENVSETTINGS_NIL, secrets=secrets):
