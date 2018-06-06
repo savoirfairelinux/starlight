@@ -10,7 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
+import json
 import os
+import sys
+
+import pathlib
+
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,9 +29,51 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'lyv5ul6w%c1^ki1=$2wchb-#8+i%f)s=k1t%#95#e8vd-rro6)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+
+# BASE DIRECTORIES
+# ------------------------------------------------------------------------------
+
+# PROJECT_PATH holds the path towards the root of the project.
+# INSTALL_PATH holds the path towards the directory where the project's repository lives.
+# By default INSTALL_PATH will correspond to the folder containing the project's repository (which
+# should be compliant with the basic cases where the project is provisionned in a remote repository,
+# a virtual machine or a container). But it should be noted that this path can be overriden by
+# setting the DJANGO_INSTALL_PATH environment variable.
+
+INSTALL_PATH = pathlib.Path(os.environ.get('DJANGO_INSTALL_PATH')) \
+    if 'DJANGO_INSTALL_PATH' in os.environ else pathlib.Path(__file__).parents[1]
+PROJECT_PATH = pathlib.Path(__file__).parents[2]
+
+
+# ENVIRONMENT SETTINGS HANDLING
+# ------------------------------------------------------------------------------
+
+ENVSETTINGS_FILENAME = '.env.json'
+ENVSETTINGS_NIL = object()
+
+# JSON-based environment module
+try:
+    with open(os.environ.get('DJANGO_ENVSETTINGS_FILEPATH') or
+              str(INSTALL_PATH / ENVSETTINGS_FILENAME)) as f:
+        secrets = json.loads(f.read())
+except IOError:
+    print("Error opening environment file!")
+    sys.exit(1)
+
+
+def get_envsetting(setting, default=ENVSETTINGS_NIL, secrets=secrets):
+    """ Get the environment setting variable or return explicit exception. """
+    try:
+        return secrets[setting]
+    except KeyError:
+        if default is not ENVSETTINGS_NIL:
+            return default
+        error_msg = 'Set the {} environment variable in the {} file'.format(
+            setting, ENVSETTINGS_FILENAME)
+        raise ImproperlyConfigured(error_msg)
 
 
 # Application definition
@@ -37,6 +85,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Local apps
+    'starlight',
 ]
 
 MIDDLEWARE = [
@@ -75,11 +126,13 @@ WSGI_APPLICATION = 'starlight.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': get_envsetting('DB_ENGINE'),
+        'NAME': get_envsetting('DB_NAME'),
+        'USER': get_envsetting('DB_USER'),
+        'PASSWORD': get_envsetting('DB_PASSWORD'),
+        'HOST': get_envsetting('DB_HOST', ''),
+        'PORT': get_envsetting('DB_PORT', ''),
+        'OPTIONS': get_envsetting('DB_OPTIONS', {}),
     }
 }
 
