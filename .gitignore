@@ -55,6 +55,7 @@ coverage.xml
 *.log
 local_settings.py
 db.sqlite3
+project.db
 
 # Flask stuff:
 instance/
@@ -83,12 +84,14 @@ celerybeat-schedule
 
 # Environments
 .env
+.env.json
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+.idea/
 
 # Spyder project settings
 .spyderproject
