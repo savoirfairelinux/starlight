@@ -12,6 +12,7 @@
 
 from django.db import models
 from django.db.models.deletion import CASCADE
+from django.contrib.auth.base_user import AbstractBaseUser
 
 
 class Skill(models.Model):
@@ -21,27 +22,24 @@ class Skill(models.Model):
 
 class Competency(models.Model):
     INTEREST_CHOICES = (
-        ('1', 'Not interested'),
-        ('2', 'Interested to learn'),
-        ('3', 'Competent'),
-        ('4', 'Can share knowledge')
+        (1, 'Not interested'),
+        (2, 'Interested to learn'),
+        (3, 'Competent'),
+        (4, 'Can share knowledge')
     )
     EXPERIENCE_CHOICES = (
-        ('0-2', 'Less than two years'),
-        ('2-4', 'Two to four years'),
-        ('4-6', 'Four to six years'),
-        ('6-10', 'Six to ten years'),
-        ('10+', 'More than ten years')
+        (1, 'Less than two years'),
+        (2, 'Two to four years'),
+        (3, 'Four to six years'),
+        (4, 'Six to ten years'),
+        (5, 'More than ten years')
     )
     skill = models.ForeignKey(Skill, null=True, on_delete=CASCADE)
-    interest = models.CharField(max_length=50, choices=INTEREST_CHOICES)
-    experience = models.CharField(max_length=50, choices=EXPERIENCE_CHOICES)
+    interest = models.IntegerField(choices=INTEREST_CHOICES)
+    experience = models.IntegerField(choices=EXPERIENCE_CHOICES)
 
 
-class Employee(models.Model):
-    name = models.CharField(max_length=60)
-    password = models.CharField(max_length=60)
-    email = models.CharField(max_length=75)
+class Employee(AbstractBaseUser):
     competencies = models.ManyToManyField(Competency, blank=True, related_name='employees')
 
     def __repr__(self):
