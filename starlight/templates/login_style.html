@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>
-        {% block title %}{% trans "Sous-Chef" %}{% endblock %}
+        {% block title %}{% trans "Starlight" %}{% endblock %}
     </title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css" rel="stylesheet">
@@ -15,7 +15,8 @@
 
     <style type="text/css">
         body {
-          background-color: #DADADA;
+          background: url('starlight/static/images/starlight-background.png');
+          background-size: 100% auto;
         }
         body > .grid {
           height: 100%;
@@ -27,13 +28,11 @@
           max-width: 450px;
         }
 
-
-
-
     </style>
 </head>
 
 <body>
+
 <div class="ui middle aligned center aligned grid">
 
     <div class="column">
@@ -47,6 +46,5 @@
         type="application/javascript"></script>
 <script src="{% static 'js/sous-chef.js' %}" type="application/javascript"></script>
 </body>
-
 
 </html>
