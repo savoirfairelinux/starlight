@@ -1,0 +1,20 @@
+@charset 'UTF-8';
+
+// 1. Variables
+@import "variables";
+
+// 1. Vendors
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import "~bootstrap-sass/assets/stylesheets/_bootstrap";
+$fa-font-path: '~font-awesome/fonts/';
+@import "~font-awesome/scss/font-awesome";
+
+// 2. Mixins
+@import "mixins";
+
+// 3. Common elements
+@import "common";
+
+// 3. Pages
+@import "pages/index";
+

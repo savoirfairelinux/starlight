@@ -57,6 +57,9 @@ local_settings.py
 db.sqlite3
 project.db
 
+#Static generated files
+starlight/static/admin/
+
 # Flask stuff:
 instance/
 .webassets-cache
