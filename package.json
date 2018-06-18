@@ -13,7 +13,7 @@
     "url": "git+https://github.com/savoirfairelinux/starlight.git"
   },
   "author": "Anthony Laye",
-  "license": "ISC",
+  "license": "GPLv3",
   "bugs": {
     "url": "https://github.com/savoirfairelinux/starlight/issues"
   },

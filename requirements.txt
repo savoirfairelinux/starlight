@@ -2,8 +2,4 @@ Django>=2.0
 django-webpack-loader
 psycopg2
 
-## Dev
 django-debug-toolbar
-ipython
-pyroute2
-npm
