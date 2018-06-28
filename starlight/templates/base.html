@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load i18n %}
-{% load staticfiles %}
+{% load render_bundle webpack_static from webpack_loader %}
 <html>
 
 <head>
@@ -9,7 +9,7 @@
         {% block title %}{% trans "Starlight" %}{% endblock %}
     </title>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css" rel="stylesheet">
+    {% render_bundle 'main' 'css' %}
 
     {% block extrahead %}{% endblock %}
 
