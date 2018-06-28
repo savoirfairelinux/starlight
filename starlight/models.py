@@ -19,8 +19,13 @@ class Skill(models.Model):
     name = models.CharField(max_length=60)
     is_technical = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Competency(models.Model):
+    class Meta:
+        verbose_name_plural = 'competencies'
     INTEREST_CHOICES = (
         (1, 'Not interested'),
         (2, 'Interested to learn'),
@@ -38,12 +43,33 @@ class Competency(models.Model):
     interest = models.IntegerField(choices=INTEREST_CHOICES)
     experience = models.IntegerField(choices=EXPERIENCE_CHOICES)
 
+    def __str__(self):
+        return '%s: Interest: %s, Experience: %s' % (self.skill.name, self.interest, self.experience)
+
 
 class Employee(AbstractBaseUser):
+    def get_short_name(self):
+        pass
+
+    def get_full_name(self):
+        pass
+
     competencies = models.ManyToManyField(Competency, blank=True, related_name='employees')
 
+    full_name = models.CharField(
+        verbose_name='Full Name',
+        max_length=100
+    )
+    email = models.EmailField(
+        verbose_name='Email Address',
+        max_length=150,
+        unique=True,
+    )
+    FULLNAME_FIELD = 'full_name'
+    USERNAME_FIELD = 'email'
+
     def __repr__(self):
-        return '<User: %s>' % self.name
+        return '<User: %s>' % self.full_name
 
     def __str__(self):
-        return self.name
+        return self.full_name
