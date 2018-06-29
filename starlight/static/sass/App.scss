@@ -1,20 +1,16 @@
 @charset 'UTF-8';
 
 // 1. Variables
-@import "variables";
+//@import "variables";
 
 // 1. Vendors
-@import '~semantic-ui-sass/scss/globals/all';
-@import '~semantic-ui-sass/scss/elements/all';
-@import '~semantic-ui-sass/scss/collections/all';
-@import '~semantic-ui-sass/scss/views/all';
-@import '~semantic-ui-sass/scss/modules/all';
+@import './../../../semantic/dist/semantic.min.css';
 
 // 2. Mixins
-@import "mixins";
+//@import "mixins";
 
 // 3. Common elements
-@import "common";
+//@import "common";
 
 // 3. Pages
-@import "pages/index";
+//@import "pages/index";

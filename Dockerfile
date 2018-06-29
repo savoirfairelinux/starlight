@@ -13,4 +13,5 @@ RUN apk add --no-cache make nodejs postgresql-dev gcc python3-dev\
 RUN pip3 install -r requirements.txt
 
 RUN rm -rf /code/starlight/static/build
+RUN npm rebuild node-sass
 RUN npm run webpack

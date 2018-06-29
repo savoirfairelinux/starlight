@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: path.resolve('./starlight/static/build'),
     filename: '[name].js',
-    publicPath: env.production ? '/static/' : 'http://localhost:8081/assets/build/',
+    publicPath: 'http://localhost:8081/assets/build/',
   },
 
   module: {
