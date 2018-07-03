@@ -1,45 +1,31 @@
 <!DOCTYPE html>
 {% load i18n %}
 {% load render_bundle webpack_static from webpack_loader %}
+{% load static %}
 <html>
-
 <head>
     <meta charset="UTF-8">
-    <title>
-        {% block title %}{% trans "Starlight" %}{% endblock %}
-    </title>
 
     {% render_bundle 'main' 'css' %}
 
-    {% block extrahead %}{% endblock %}
+    <title>Starlight</title>
 
-    <style type="text/css">
-        body {
-          background: url('/static/images/starlight-background.png');
-          background-size: 100% auto;
-        }
-        body > .grid {
-          height: 100%;
-        }
-        .image {
-          margin-top: -100px;
-        }
-        .column {
-          max-width: 450px;
-        }
+    <div class="ui inverted menu">
+        <a class="active blue item">Home</a>
+        <a class="black item">Individual Pages</a>
+        <a class="black item">Login</a>
+        <a class="black item">Logout</a>
+    </div>
 
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
 </head>
 
 <body>
-
 <div class="ui middle aligned center aligned grid">
-
     <div class="column">
         {%block content%}{%endblock%}
     </div>
-
 </div>
 </body>
-
 </html>
