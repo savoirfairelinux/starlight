@@ -1,8 +1,8 @@
-version: '3'
+version: '3.4'
 
 services:
  db:
-    image: postgres 
+    image: postgres
  web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
@@ -12,3 +12,13 @@ services:
       - "8000:8000"
     depends_on:
       - db
+ livereload:
+    build:
+      context: ./
+    command: npm run webpack:dev
+    volumes:
+      - ./starlight/static:/code/starlight/static:rw
+    ports:
+      - "8081:8081"
+ 
+

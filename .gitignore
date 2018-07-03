@@ -57,6 +57,11 @@ local_settings.py
 db.sqlite3
 project.db
 
+#Static generated files
+starlight/static/admin/
+starlight/static/webpack-stats.json
+starlight/static/bundles/
+
 # Flask stuff:
 instance/
 .webassets-cache
@@ -92,6 +97,8 @@ ENV/
 env.bak/
 venv.bak/
 .idea/
+node_modules/
+semantic/
 
 # Spyder project settings
 .spyderproject

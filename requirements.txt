@@ -1,2 +1,5 @@
 Django>=2.0
+django-webpack-loader
 psycopg2
+
+django-debug-toolbar

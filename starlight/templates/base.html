@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load render_bundle webpack_static from webpack_loader %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}{% trans "Starlight" %}{% endblock %}
+    </title>
+
+    {% render_bundle 'main' 'css' %}
+
+    {% block extrahead %}{% endblock %}
+
+    <style type="text/css">
+        body {
+          background: url('/static/images/starlight-background.png');
+          background-size: 100% auto;
+        }
+        body > .grid {
+          height: 100%;
+        }
+        .image {
+          margin-top: -100px;
+        }
+        .column {
+          max-width: 450px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="ui middle aligned center aligned grid">
+
+    <div class="column">
+        {%block content%}{%endblock%}
+    </div>
+
+</div>
+</body>
+
+</html>
