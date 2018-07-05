@@ -1,93 +1,5 @@
 [
   {
-    "model": "contenttypes.contenttype",
-    "pk": 1,
-    "fields": {
-      "app_label": "admin",
-      "model": "logentry"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 2,
-    "fields": {
-      "app_label": "auth",
-      "model": "permission"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 3,
-    "fields": {
-      "app_label": "auth",
-      "model": "group"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 4,
-    "fields": {
-      "app_label": "auth",
-      "model": "user"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 5,
-    "fields": {
-      "app_label": "contenttypes",
-      "model": "contenttype"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 6,
-    "fields": {
-      "app_label": "sessions",
-      "model": "session"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 7,
-    "fields": {
-      "app_label": "starlight",
-      "model": "employee"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 8,
-    "fields": {
-      "app_label": "starlight",
-      "model": "competency"
-    }
-  },
-  {
-    "model": "contenttypes.contenttype",
-    "pk": 9,
-    "fields": {
-      "app_label": "starlight",
-      "model": "skill"
-    }
-  },
-  {
-    "model": "sessions.session",
-    "pk": "0ftznqb036994vjnoc3dd01l81a7zplx",
-    "fields": {
-      "session_data": "NjNiNzAzMmRmYjdiNjNhZmQxYzY2YWUyNjIyMjk4Mzk0NTZmYjE4ODp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJkYzRlOTZmZTBiODNhYzhjN2YwZjczYWY4Njc4OGI0ZTRmYjdiZThjIn0=",
-      "expire_date": "2018-07-12T13:57:49.601Z"
-    }
-  },
-  {
-    "model": "sessions.session",
-    "pk": "scahxvf7nah65ibxa3y0wwc16m4nok29",
-    "fields": {
-      "session_data": "YjkwMWI4YTY2ZDEwMWY2YzcwZWQxMDNhMzVjYWI2YWI0NzZhMDFiMzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxOThkNGMxNTIyMDY2MTRlMmRhOGI4NGFmNWEwOTRkNzkwMGU5NzJhIn0=",
-      "expire_date": "2018-07-02T16:28:50.566Z"
-    }
-  },
-  {
     "model": "starlight.skill",
     "pk": 1,
     "fields": {
@@ -164,6 +76,78 @@
     "pk": 10,
     "fields": {
       "name": "Project Management",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 11,
+    "fields": {
+      "name": "Graphic Design",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 12,
+    "fields": {
+      "name": "Dev Ops",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 13,
+    "fields": {
+      "name": "Spanish",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 14,
+    "fields": {
+      "name": "Swift",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 15,
+    "fields": {
+      "name": "Javascript",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 16,
+    "fields": {
+      "name": "Leadership",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 17,
+    "fields": {
+      "name": "Communication",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 18,
+    "fields": {
+      "name": "Adaptability",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 19,
+    "fields": {
+      "name": "Time Management",
       "is_technical": false
     }
   },
@@ -249,10 +233,37 @@
     }
   },
   {
+    "model": "starlight.competency",
+    "pk": 10,
+    "fields": {
+      "skill": 10,
+      "interest": "4",
+      "experience": "5"
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 11,
+    "fields": {
+      "skill": 6,
+      "interest": "2",
+      "experience": "4"
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 12,
+    "fields": {
+      "skill": 2,
+      "interest": "3",
+      "experience": "1"
+    }
+  },
+  {
     "model": "starlight.employee",
     "pk": 1,
     "fields": {
-      "password": "test123",
+      "password": "alaye12345",
       "last_login": "2018-06-28T13:58:37Z",
       "full_name": "Anthony Laye",
       "email": "anthony_laye@hotmail.com",
@@ -302,410 +313,6 @@
         3,
         5
       ]
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 1,
-    "fields": {
-      "name": "Can add log entry",
-      "content_type": 1,
-      "codename": "add_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 2,
-    "fields": {
-      "name": "Can change log entry",
-      "content_type": 1,
-      "codename": "change_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 3,
-    "fields": {
-      "name": "Can delete log entry",
-      "content_type": 1,
-      "codename": "delete_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 4,
-    "fields": {
-      "name": "Can add permission",
-      "content_type": 2,
-      "codename": "add_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 5,
-    "fields": {
-      "name": "Can change permission",
-      "content_type": 2,
-      "codename": "change_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 6,
-    "fields": {
-      "name": "Can delete permission",
-      "content_type": 2,
-      "codename": "delete_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 7,
-    "fields": {
-      "name": "Can add group",
-      "content_type": 3,
-      "codename": "add_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 8,
-    "fields": {
-      "name": "Can change group",
-      "content_type": 3,
-      "codename": "change_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 9,
-    "fields": {
-      "name": "Can delete group",
-      "content_type": 3,
-      "codename": "delete_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 10,
-    "fields": {
-      "name": "Can add user",
-      "content_type": 4,
-      "codename": "add_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 11,
-    "fields": {
-      "name": "Can change user",
-      "content_type": 4,
-      "codename": "change_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 12,
-    "fields": {
-      "name": "Can delete user",
-      "content_type": 4,
-      "codename": "delete_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 13,
-    "fields": {
-      "name": "Can add content type",
-      "content_type": 5,
-      "codename": "add_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 14,
-    "fields": {
-      "name": "Can change content type",
-      "content_type": 5,
-      "codename": "change_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 15,
-    "fields": {
-      "name": "Can delete content type",
-      "content_type": 5,
-      "codename": "delete_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 16,
-    "fields": {
-      "name": "Can add session",
-      "content_type": 6,
-      "codename": "add_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 17,
-    "fields": {
-      "name": "Can change session",
-      "content_type": 6,
-      "codename": "change_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 18,
-    "fields": {
-      "name": "Can delete session",
-      "content_type": 6,
-      "codename": "delete_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 19,
-    "fields": {
-      "name": "Can add employee",
-      "content_type": 7,
-      "codename": "add_employee"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 20,
-    "fields": {
-      "name": "Can change employee",
-      "content_type": 7,
-      "codename": "change_employee"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 21,
-    "fields": {
-      "name": "Can delete employee",
-      "content_type": 7,
-      "codename": "delete_employee"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 22,
-    "fields": {
-      "name": "Can add competency",
-      "content_type": 8,
-      "codename": "add_competency"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 23,
-    "fields": {
-      "name": "Can change competency",
-      "content_type": 8,
-      "codename": "change_competency"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 24,
-    "fields": {
-      "name": "Can delete competency",
-      "content_type": 8,
-      "codename": "delete_competency"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 25,
-    "fields": {
-      "name": "Can add skill",
-      "content_type": 9,
-      "codename": "add_skill"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 26,
-    "fields": {
-      "name": "Can change skill",
-      "content_type": 9,
-      "codename": "change_skill"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 27,
-    "fields": {
-      "name": "Can delete skill",
-      "content_type": 9,
-      "codename": "delete_skill"
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 3,
-    "fields": {
-      "password": "pbkdf2_sha256$100000$0Xqng6GMClvH$bZyoUGTPymHnkjpSaA/ZAO9Zsv3Vs+bDlsIEzVDrhtM=",
-      "last_login": "2018-06-28T13:57:49Z",
-      "is_superuser": true,
-      "username": "alaye",
-      "first_name": "Anthony",
-      "last_name": "Laye",
-      "email": "anthony_laye@hotmail.com",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2018-06-28T13:57:44Z",
-      "groups": [],
-      "user_permissions": []
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 20,
-    "fields": {
-      "action_time": "2018-06-28T13:58:08.799Z",
-      "user": 3,
-      "content_type": 4,
-      "object_id": "3",
-      "object_repr": "alaye",
-      "action_flag": 2,
-      "change_message": "[{\"changed\": {\"fields\": [\"first_name\", \"last_name\"]}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 21,
-    "fields": {
-      "action_time": "2018-06-28T13:58:45.362Z",
-      "user": 3,
-      "content_type": 7,
-      "object_id": "1",
-      "object_repr": "Anthony Laye",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 22,
-    "fields": {
-      "action_time": "2018-06-28T14:10:30.514Z",
-      "user": 3,
-      "content_type": 7,
-      "object_id": "1",
-      "object_repr": "Anthony Laye",
-      "action_flag": 2,
-      "change_message": "[{\"changed\": {\"fields\": [\"full_name\", \"email\"]}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 23,
-    "fields": {
-      "action_time": "2018-06-28T14:27:06.732Z",
-      "user": 3,
-      "content_type": 7,
-      "object_id": "2",
-      "object_repr": "Antoine Griezmann",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 24,
-    "fields": {
-      "action_time": "2018-06-28T14:27:35.690Z",
-      "user": 3,
-      "content_type": 7,
-      "object_id": "3",
-      "object_repr": "Paul Pogba",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 25,
-    "fields": {
-      "action_time": "2018-06-28T14:28:23.955Z",
-      "user": 3,
-      "content_type": 7,
-      "object_id": "4",
-      "object_repr": "Olivier Giroud",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 26,
-    "fields": {
-      "action_time": "2018-06-28T14:28:57.184Z",
-      "user": 3,
-      "content_type": 8,
-      "object_id": "6",
-      "object_repr": "Java: Interest: 4, Experience: 5",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 27,
-    "fields": {
-      "action_time": "2018-06-28T14:29:06.467Z",
-      "user": 3,
-      "content_type": 8,
-      "object_id": "7",
-      "object_repr": "Mobile Android: Interest: 2, Experience: 4",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 28,
-    "fields": {
-      "action_time": "2018-06-28T14:29:16.589Z",
-      "user": 3,
-      "content_type": 8,
-      "object_id": "8",
-      "object_repr": "Python Django: Interest: 1, Experience: 1",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 29,
-    "fields": {
-      "action_time": "2018-06-28T14:29:29.784Z",
-      "user": 3,
-      "content_type": 8,
-      "object_id": "9",
-      "object_repr": "Python: Interest: 2, Experience: 5",
-      "action_flag": 1,
-      "change_message": "[{\"added\": {}}]"
-    }
-  },
-  {
-    "model": "admin.logentry",
-    "pk": 30,
-    "fields": {
-      "action_time": "2018-06-28T14:29:51.513Z",
-      "user": 3,
-      "content_type": 7,
-      "object_id": "3",
-      "object_repr": "Paul Pogba",
-      "action_flag": 2,
-      "change_message": "[{\"changed\": {\"fields\": [\"competencies\"]}}]"
     }
   }
 ]
