@@ -156,8 +156,8 @@
     "pk": 1,
     "fields": {
       "skill": 10,
-      "interest": "3",
-      "experience": "2"
+      "interest": 3,
+      "experience": 2
     }
   },
   {
@@ -165,8 +165,8 @@
     "pk": 2,
     "fields": {
       "skill": 8,
-      "interest": "4",
-      "experience": "5"
+      "interest": 4,
+      "experience": 5
     }
   },
   {
@@ -174,8 +174,8 @@
     "pk": 3,
     "fields": {
       "skill": 7,
-      "interest": "1",
-      "experience": "1"
+      "interest": 1,
+      "experience": 1
     }
   },
   {
@@ -183,8 +183,8 @@
     "pk": 4,
     "fields": {
       "skill": 5,
-      "interest": "3",
-      "experience": "3"
+      "interest": 3,
+      "experience": 3
     }
   },
   {
@@ -192,8 +192,8 @@
     "pk": 5,
     "fields": {
       "skill": 5,
-      "interest": "1",
-      "experience": "1"
+      "interest": 1,
+      "experience": 1
     }
   },
   {
@@ -201,8 +201,8 @@
     "pk": 6,
     "fields": {
       "skill": 4,
-      "interest": "4",
-      "experience": "5"
+      "interest": 4,
+      "experience": 5
     }
   },
   {
@@ -210,8 +210,8 @@
     "pk": 7,
     "fields": {
       "skill": 6,
-      "interest": "2",
-      "experience": "4"
+      "interest": 2,
+      "experience": 4
     }
   },
   {
@@ -219,8 +219,8 @@
     "pk": 8,
     "fields": {
       "skill": 2,
-      "interest": "1",
-      "experience": "1"
+      "interest": 1,
+      "experience": 1
     }
   },
   {
@@ -228,8 +228,8 @@
     "pk": 9,
     "fields": {
       "skill": 1,
-      "interest": "2",
-      "experience": "5"
+      "interest": 2,
+      "experience": 5
     }
   },
   {
@@ -237,8 +237,8 @@
     "pk": 10,
     "fields": {
       "skill": 10,
-      "interest": "4",
-      "experience": "5"
+      "interest": 4,
+      "experience": 5
     }
   },
   {
@@ -246,8 +246,8 @@
     "pk": 11,
     "fields": {
       "skill": 6,
-      "interest": "2",
-      "experience": "4"
+      "interest": 2,
+      "experience": 4
     }
   },
   {
@@ -255,22 +255,8 @@
     "pk": 12,
     "fields": {
       "skill": 2,
-      "interest": "3",
-      "experience": "1"
-    }
-  },
-  {
-    "model": "starlight.employee",
-    "pk": 1,
-    "fields": {
-      "password": "alaye12345",
-      "last_login": "2018-06-28T13:58:37Z",
-      "full_name": "Anthony Laye",
-      "email": "anthony_laye@hotmail.com",
-      "competencies": [
-        3,
-        5
-      ]
+      "interest": 3,
+      "experience": 1
     }
   },
   {
@@ -278,25 +264,21 @@
     "pk": 2,
     "fields": {
       "password": "test123",
-      "last_login": "2018-06-18T17:28:07Z",
-      "full_name": "Antoine Griezmann",
-      "email": "antoine@griezmann.com",
-      "competencies": []
-    }
-  },
-  {
-    "model": "starlight.employee",
-    "pk": 3,
-    "fields": {
-      "password": "test123",
-      "last_login": "2018-06-18T18:10:17Z",
-      "full_name": "Paul Pogba",
-      "email": "paul@pogba.com",
+      "last_login": "2018-07-05T19:37:57Z",
+      "is_superuser": false,
+      "username": "Elvis",
+      "first_name": "Elvis",
+      "last_name": "Presley",
+      "email": "elvis.presley@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T19:37:51Z",
+      "groups": [],
+      "user_permissions": [],
       "competencies": [
-        6,
-        7,
         8,
-        9
+        9,
+        10
       ]
     }
   },
@@ -304,14 +286,112 @@
     "model": "starlight.employee",
     "pk": 4,
     "fields": {
-      "password": "test123",
-      "last_login": "2018-06-28T17:28:07Z",
-      "full_name": "Olivier Giroud",
-      "email": "olivier@giroud.com",
+      "password": "pbkdf2_sha256$100000$GmxQ3r19vu2u$s3Q8YsciUzd9RO2ohWi4muKcFL0Bxdat0o8KBcLBOI4=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "PaulPogba",
+      "first_name": "Paul",
+      "last_name": "Pogba",
+      "email": "paul.pogba@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T19:51:34Z",
+      "groups": [],
+      "user_permissions": [],
       "competencies": [
-        2,
+        1
+      ]
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$RSNlu3IKydFa$NfOCDDcAFK3pmYL8JahSiH/Bpn37F3Yn9ovkYM+7Nvo=",
+      "last_login": "2018-07-05T19:54:59Z",
+      "is_superuser": true,
+      "username": "JohnLennon",
+      "first_name": "John",
+      "last_name": "Lennon",
+      "email": "john.lennon@starlight.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2018-07-05T19:54:49Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
+        5,
+        6,
+        7
+      ]
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$SrOtVeFjmhTU$z6mGa77SpXbrZlZMFiF+7fBVTxHbnxoTJ2JCKQEZ9UI=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "BobMarley",
+      "first_name": "Bob",
+      "last_name": "Marley",
+      "email": "bob.marley@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T19:56:43Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
         3,
+        4,
         5
+      ]
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$7cLBZnA34hiN$y6A77QjqEkKt7ZEp4xNtKI3J4xGTUfvWJutCAAQp9dM=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "NotMyLover97",
+      "first_name": "Billie",
+      "last_name": "Jean",
+      "email": "billie.jean@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T20:23:47.596Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$jp4hajtbsyzD$n3oImh994D/WIPcUv8pDs+QVXBWWoLjXr1aSzz3/eFA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "PatrickStar",
+      "first_name": "Patrick",
+      "last_name": "Star",
+      "email": "patrick.star@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T20:53:03.921Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
+        6,
+        10,
+        12
       ]
     }
   }

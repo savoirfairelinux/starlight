@@ -183,3 +183,5 @@ WEBPACK_LOADER = {
         'BUNDLE_DIR_NAME': 'build/'
     }
 }
+
+AUTH_USER_MODEL = 'starlight.Employee'
