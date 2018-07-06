@@ -44,7 +44,7 @@ class Competency(models.Model):
     experience = models.IntegerField(choices=EXPERIENCE_CHOICES)
 
     def __str__(self):
-        return '%s: Interest: %s, Experience: %s' % (self.skill.name, self.interest, self.experience)
+        return '{}: Interest: {}, Experience: {}'.format(self.skill.name, self.interest, self.experience)
 
 
 class Employee(AbstractUser):
@@ -52,7 +52,7 @@ class Employee(AbstractUser):
     competencies = models.ManyToManyField(Competency, blank=True, related_name='employees')
 
     def __repr__(self):
-        return '<Employee: %s %s>' % (self.first_name, self.last_name)
+        return 'Employee: {} {}'.format(self.first_name, self.last_name)
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return '{} {}'.format(self.first_name, self.last_name)
