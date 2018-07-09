@@ -13,8 +13,8 @@ from starlight.models import Skill, Employee
 def home(request):
     skills = Skill.objects.order_by('name')
     employees = Employee.objects.all()
-    return render_to_response('views/home.html', {'skills': skills, 'employees': employees})
+    return render_to_response('views/home.html', {'skills': skills, 'employees': employees, 'viewname': 'home'})
 
 
 def login(request):
-    return render_to_response('login/login.html')
+    return render_to_response('login/login.html', {'viewname': 'login'})

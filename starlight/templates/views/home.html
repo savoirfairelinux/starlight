@@ -8,6 +8,8 @@
 
 {% block content %}
 
+{% load starlight_extras %}
+
 <h1 class="ui black image header">
     <div class="content">
         {% trans "Knowledge Table" %}
@@ -34,18 +36,22 @@
         <tbody>
         {% for employee in employees %}
         <tr>
-            <th align="center">{{employee.full_name}}</th>
+            <th align="center">{{employee}}</th>
             {% for skill in skills %}
-                {% for employee_competency in employee.competencies.all %}
+                {% if not skill|search:employee.competencies.all %}
+                    <td>
+                        -
+                    </td>
+                {% else %}
+                    {% for employee_competency in employee.competencies.all %}
+
                     {% if skill == employee_competency.skill %}
                     <td>
-                        {{ employee_competency.get_interest_display|safe }}, {{ employee_competency.get_experience_display|safe }}
+                        {{ employee_competency.get_interest_display }}, {{ employee_competency.get_experience_display }}
                     </td>
                     {% endif %}
-                {% endfor %}
-                <td>
-                    -
-                </td>
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
         </tr>
         {% endfor %}

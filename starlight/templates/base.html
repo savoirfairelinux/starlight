@@ -11,9 +11,10 @@
     <title>Starlight</title>
 
     <div class="ui inverted menu">
-        <a class="active blue item">Home</a>
+
+        <a class="{% ifequal viewname 'home' %}active blue item{% else %}black item{% endifequal %}" href="{% url 'home' %}"> Home </a>
         <a class="black item">Individual Pages</a>
-        <a class="black item">Login</a>
+        <a class="{% ifequal viewname 'login' %}active blue item{% else %}black item{% endifequal %}" href="{% url 'login' %}"> Login </a>
         <a class="black item">Logout</a>
     </div>
 

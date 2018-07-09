@@ -8,20 +8,21 @@
 
 {% block content %}
 
-<h1 class="ui teal image header">
+<h1 class="ui orange image header">
     <div class="content" >
         {% trans "Starlight" %}
     </div>
 </h1>
 
 <br> </br>
-<h2 class="ui yellow image header">
+<h2 class="ui orange image header">
     <div class="content">
         {% trans "Log-in" %}
     </div>
 </h2>
 
 {% if not user.username %}
+<div class="login-form">
 <form method="post" action='' class="ui large form"
       data-username-empty-msg="{% trans 'Please enter a username' %}"
       data-password-empty-msg="{% trans 'Please enter a password' %}"
@@ -45,9 +46,10 @@
 
         <input type="hidden" name="next" value="{{ next }}"/>
 
-        <button class="ui fluid large yellow button" type="submit">{% trans "Login" %}</button>
+        <button class="ui fluid large blue button" type="submit">{% trans "Login" %}</button>
     </div>
 </form>
+</div>
 
 {% else %}
 <p>{% trans "Connect" %}é</p>
