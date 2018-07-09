@@ -10,17 +10,22 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
 
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.deletion import CASCADE
-from django.contrib.auth.base_user import AbstractBaseUser
 
 
 class Skill(models.Model):
     name = models.CharField(max_length=60)
     is_technical = models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Competency(models.Model):
+    class Meta:
+        verbose_name_plural = 'competencies'
     INTEREST_CHOICES = (
         (1, 'Not interested'),
         (2, 'Interested to learn'),
@@ -38,12 +43,16 @@ class Competency(models.Model):
     interest = models.IntegerField(choices=INTEREST_CHOICES)
     experience = models.IntegerField(choices=EXPERIENCE_CHOICES)
 
+    def __str__(self):
+        return '{}: Interest: {}, Experience: {}'.format(self.skill.name, self.interest, self.experience)
 
-class Employee(AbstractBaseUser):
+
+class Employee(AbstractUser):
+
     competencies = models.ManyToManyField(Competency, blank=True, related_name='employees')
 
     def __repr__(self):
-        return '<User: %s>' % self.name
+        return 'Employee: {} {}'.format(self.first_name, self.last_name)
 
     def __str__(self):
-        return self.name
+        return '{} {}'.format(self.first_name, self.last_name)

@@ -1,0 +1,398 @@
+[
+  {
+    "model": "starlight.skill",
+    "pk": 1,
+    "fields": {
+      "name": "Python",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 2,
+    "fields": {
+      "name": "Python Django",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 3,
+    "fields": {
+      "name": "PHP",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 4,
+    "fields": {
+      "name": "Java",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 5,
+    "fields": {
+      "name": "Docker",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 6,
+    "fields": {
+      "name": "Mobile Android",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 7,
+    "fields": {
+      "name": "Drupal 8",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 8,
+    "fields": {
+      "name": "English",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 9,
+    "fields": {
+      "name": "French",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 10,
+    "fields": {
+      "name": "Project Management",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 11,
+    "fields": {
+      "name": "Graphic Design",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 12,
+    "fields": {
+      "name": "Dev Ops",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 13,
+    "fields": {
+      "name": "Spanish",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 14,
+    "fields": {
+      "name": "Swift",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 15,
+    "fields": {
+      "name": "Javascript",
+      "is_technical": true
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 16,
+    "fields": {
+      "name": "Leadership",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 17,
+    "fields": {
+      "name": "Communication",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 18,
+    "fields": {
+      "name": "Adaptability",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.skill",
+    "pk": 19,
+    "fields": {
+      "name": "Time Management",
+      "is_technical": false
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 1,
+    "fields": {
+      "skill": 10,
+      "interest": 3,
+      "experience": 2
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 2,
+    "fields": {
+      "skill": 8,
+      "interest": 4,
+      "experience": 5
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 3,
+    "fields": {
+      "skill": 7,
+      "interest": 1,
+      "experience": 1
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 4,
+    "fields": {
+      "skill": 5,
+      "interest": 3,
+      "experience": 3
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 5,
+    "fields": {
+      "skill": 5,
+      "interest": 1,
+      "experience": 1
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 6,
+    "fields": {
+      "skill": 4,
+      "interest": 4,
+      "experience": 5
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 7,
+    "fields": {
+      "skill": 6,
+      "interest": 2,
+      "experience": 4
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 8,
+    "fields": {
+      "skill": 2,
+      "interest": 1,
+      "experience": 1
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 9,
+    "fields": {
+      "skill": 1,
+      "interest": 2,
+      "experience": 5
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 10,
+    "fields": {
+      "skill": 10,
+      "interest": 4,
+      "experience": 5
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 11,
+    "fields": {
+      "skill": 6,
+      "interest": 2,
+      "experience": 4
+    }
+  },
+  {
+    "model": "starlight.competency",
+    "pk": 12,
+    "fields": {
+      "skill": 2,
+      "interest": 3,
+      "experience": 1
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 2,
+    "fields": {
+      "password": "test123",
+      "last_login": "2018-07-05T19:37:57Z",
+      "is_superuser": false,
+      "username": "Elvis",
+      "first_name": "Elvis",
+      "last_name": "Presley",
+      "email": "elvis.presley@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T19:37:51Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
+        8,
+        9,
+        10
+      ]
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$GmxQ3r19vu2u$s3Q8YsciUzd9RO2ohWi4muKcFL0Bxdat0o8KBcLBOI4=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "PaulPogba",
+      "first_name": "Paul",
+      "last_name": "Pogba",
+      "email": "paul.pogba@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T19:51:34Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$RSNlu3IKydFa$NfOCDDcAFK3pmYL8JahSiH/Bpn37F3Yn9ovkYM+7Nvo=",
+      "last_login": "2018-07-05T19:54:59Z",
+      "is_superuser": true,
+      "username": "JohnLennon",
+      "first_name": "John",
+      "last_name": "Lennon",
+      "email": "john.lennon@starlight.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2018-07-05T19:54:49Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
+        5,
+        6,
+        7
+      ]
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$SrOtVeFjmhTU$z6mGa77SpXbrZlZMFiF+7fBVTxHbnxoTJ2JCKQEZ9UI=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "BobMarley",
+      "first_name": "Bob",
+      "last_name": "Marley",
+      "email": "bob.marley@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T19:56:43Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$7cLBZnA34hiN$y6A77QjqEkKt7ZEp4xNtKI3J4xGTUfvWJutCAAQp9dM=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "NotMyLover97",
+      "first_name": "Billie",
+      "last_name": "Jean",
+      "email": "billie.jean@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T20:23:47.596Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "starlight.employee",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$100000$jp4hajtbsyzD$n3oImh994D/WIPcUv8pDs+QVXBWWoLjXr1aSzz3/eFA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "PatrickStar",
+      "first_name": "Patrick",
+      "last_name": "Star",
+      "email": "patrick.star@starlight.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-07-05T20:53:03.921Z",
+      "groups": [],
+      "user_permissions": [],
+      "competencies": [
+        6,
+        10,
+        12
+      ]
+    }
+  }
+]
