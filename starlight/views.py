@@ -4,7 +4,7 @@
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 
 from starlight.models import Skill, Employee
@@ -17,4 +17,4 @@ def home(request):
 
 
 def login(request):
-    return render_to_response('login/login.html', {'viewname': 'login'})
+    return render(request, 'login/login.html', {'viewname': 'login'})
