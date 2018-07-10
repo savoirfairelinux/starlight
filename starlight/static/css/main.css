@@ -4,13 +4,10 @@ body {
   /*background: url('/static/images/starlight-background.png');*/
   background-color: lightgray;
   background-size: 100% auto;
-  font-family: 'proxima-nova';
+  font-family: 'Proxima Nova', 'Helvetica', sans-serif;
 }
 body > .grid {
   height: 100%;
-}
-.image {
-  margin-top: -100px;
 }
 .competency-table {
   margin-left:50px;
@@ -18,7 +15,7 @@ body > .grid {
   vertical-align:right;
   overflow-x:scroll;
 }
-.ui secondary menu{
+.ui .secondary .menu{
   color: red
 }
 
