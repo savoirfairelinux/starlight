@@ -18,8 +18,13 @@ body > .grid {
 .ui .secondary .menu{
   color: red
 }
-
 .login-form{
   margin-left:200px;
   margin-right:200px;
+}
+ul {
+ list-style: none;
+}
+.header{
+  font-size: 50px;
 }

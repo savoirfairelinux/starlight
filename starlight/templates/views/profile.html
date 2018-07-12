@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="ui black image header">
+    <div class="header">
+        {% trans "Your Competencies" %}
+    </div>
+</h1>
+
+<h1 class="ui black image header">
+    <div class="content">
+        {% for competency in employee.competencies.all %}
+        {{competency}} <a href="{% url 'edit_competency' id=competency.id employee=employee.id%}"> Edit </a>
+        <br>
+        {% endfor %}
+    </div>
+</h1>
+
+{% endblock %}

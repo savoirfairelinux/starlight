@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="ui black image header">
+    <div class="header">
+        Competency: {{competency.skill}}
+    </div>
+</h1>
+
+<div class="ui form">
+    <form action="/" method="post" class="ui large form" id="competency_form">
+        {% csrf_token %}
+        <h1 class="ui black image header">
+            <div class="content">
+                <!--<br> </br>
+                <select name="interest" form="competency_form">
+                    {% for interest in competency.INTEREST_CHOICES %}
+                    <option>{{interest}}</option>
+                    {% endfor %}
+                </select>
+                <select name="experience" form="competency_form">
+                    {% for experience in competency.EXPERIENCE_CHOICES %}
+                    <option>{{experience}}</option>
+                    {% endfor %}
+                </select>-->
+                {% csrf_token%}
+                {{form}}
+            </div>
+        </h1>
+        <button class="ui fluid large blue button" type="submit">Save</button>
+    </form>
+</div>
+
+
+{% endblock %}
