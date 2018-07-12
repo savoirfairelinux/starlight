@@ -10,20 +10,19 @@
 
 <h1 class="ui orange image header">
     <div class="content" >
-        {% trans "Starlight" %}
+        Starlight
     </div>
 </h1>
 
 <br> </br>
 <h2 class="ui orange image header">
     <div class="content">
-        {% trans "Log-in" %}
+        Log-in
     </div>
 </h2>
 
-{% if not user.username %}
 <div class="login-form">
-<form method="post" action='' class="ui large form"
+<form method="post" action="/login/" class="ui large form"
       data-username-empty-msg="{% trans 'Please enter a username' %}"
       data-password-empty-msg="{% trans 'Please enter a password' %}"
       data-password-min-length-msg="{% trans 'Your password must be at least {ruleValue} characters' %}">
@@ -33,8 +32,7 @@
         <div class="field">
             <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input id="id_username" maxlength="254" name="username" type="text" placeholder="Username"
-                       pb-role="username">
+                <input id="id_username" maxlength="254" name="username" type="text" placeholder="Username">
             </div>
         </div>
         <div class="field">
@@ -46,13 +44,9 @@
 
         <input type="hidden" name="next" value="{{ next }}"/>
 
-        <button class="ui fluid large blue button" type="submit">{% trans "Login" %}</button>
+        <button class="ui fluid large blue button" type="submit">Login</button>
     </div>
 </form>
 </div>
-
-{% else %}
-<p>{% trans "Connect" %}é</p>
-{% endif %}
 
 {% endblock %}

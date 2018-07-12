@@ -14,10 +14,12 @@
 
         <a class="{% ifequal viewname 'home' %}active blue item{% else %}black item{% endifequal %}" href="{% url 'home' %}"> Home </a>
         <a class="black item">Individual Pages</a>
-        <a class="{% ifequal viewname 'login' %}active blue item{% else %}black item{% endifequal %}" href="{% url 'login' %}"> Login </a>
         {% if user.is_authenticated %}
-        <a class="black item">Logout</a>
+        <a class="black item" href="{% url 'logout' %}">Logout ({{user.username}})</a>
+        {% else %}
+        <a class="black item" href="{% url 'login' %}"> Login </a>
         {% endif %}
+
     </div>
 
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
