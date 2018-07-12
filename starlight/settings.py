@@ -185,3 +185,5 @@ WEBPACK_LOADER = {
 }
 
 AUTH_USER_MODEL = 'starlight.Employee'
+
+LOGIN_REDIRECT_URL = 'home'
