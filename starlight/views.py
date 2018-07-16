@@ -6,17 +6,18 @@
 # License, or (at your option) any later version.
 
 from django.contrib.auth.views import logout
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 
-from starlight.forms import ObjectForm
+from starlight.forms import EditForm, CompetencyForm
 from starlight.models import Skill, Employee, Competency
 
 
 def home(request):
     skills = Skill.objects.order_by('name')
     employees = Employee.objects.all()
-    return render(request, 'views/home.html', {'skills': skills, 'employees': employees, 'viewname': 'home'})
+    return render(request, 'views/home.html', {'skills': skills, 'employees': employees, 'viewgroup': 'home'})
 
 
 @csrf_protect
@@ -26,25 +27,47 @@ def login(request):
 
 def profile(request, id):
     employee = Employee.objects.get(pk=id)
-    return render(request, 'views/profile.html', {'employee': employee, 'viewname': 'profile'})
+    return render(request, 'profile_views/profile.html', {'employee': employee, 'viewgroup': 'profile'})
 
 
 def edit_competency(request, employee, id):
     competency = Competency.objects.get(pk=id)
-    employee = Competency.objects.get(pk=employee)
+    employee = Employee.objects.get(pk=employee)
     skill = competency.skill
     if request.method == 'POST':
-        form = ObjectForm(request.POST, instance=competency)
+        form = EditForm(request.POST)
         if form.is_valid():
-            competency = form.save(commit=False)
-            competency.skill = skill
-            competency.save()
-            employee.competencies.add(competency)
+            interest = form.cleaned_data['interest']
+            experience = form.cleaned_data['experience']
+            competency_new, created = Competency.objects.get_or_create(skill=skill, interest=interest, experience=experience)
+            employee.competencies.remove(competency)
+            employee.competencies.add(competency_new)
             employee.save()
-    else:
-        form = ObjectForm(instance=competency)
+            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
 
-    return render(request, 'views/edit_competency.html', {'form': form, 'competency': competency, 'viewname': 'edit_competency'})
+    else:
+        form = EditForm()
+
+    return render(request, 'profile_views/edit_competency.html', {'form': form, 'competency': competency, 'viewgroup': 'profile'})
+
+
+def new_competency(request, employee):
+    employee = Employee.objects.get(pk=employee)
+    if request.method == 'POST':
+        form = CompetencyForm(request.POST, employee=employee)
+        if form.is_valid():
+            skill = form.cleaned_data['skill']
+            interest = form.cleaned_data['interest']
+            experience = form.cleaned_data['experience']
+            competency_new, created = Competency.objects.get_or_create(skill=skill, interest=interest, experience=experience)
+            employee.competencies.add(competency_new)
+            employee.save()
+            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+
+    else:
+        form = CompetencyForm(employee=employee)
+
+    return render(request, 'profile_views/new_competency.html', {'form': form, 'viewgroup': 'profile'})
 
 
 def logout_view(request):

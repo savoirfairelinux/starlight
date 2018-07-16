@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+
+<h1 class="ui black image header">
+    <div class="header">
+        {% trans "Your Competencies: " %}
+    </div>
+</h1>
+<br>
+<h1 class="ui black image header">
+    <div class="content">
+        {% for competency in employee.competencies.all %}
+        {{competency}}
+        <button class="circular ui icon button" onclick="location.href='{% url 'edit_competency' id=competency.id employee=employee.id%}'">
+            <i> Edit</i>
+        </button>
+        <br>
+        {% endfor %}
+        <button class="circular ui icon button" onclick="location.href='{% url 'new_competency' employee=employee.id%}'">
+            <i> New Competency</i>
+        </button>
+
+    </div>
+</h1>
+
+{% endblock %}
+
