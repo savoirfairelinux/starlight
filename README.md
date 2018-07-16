@@ -3,7 +3,7 @@ Cross-functional skill tracking system for Agile teams. 🌟
 
 ## Installation
 
-You need the following packages:
+Required packages:
 * git
 * Docker
 * docker-compose
@@ -11,6 +11,8 @@ You need the following packages:
 ```bash
 git clone https://github.com/savoirfairelinux/starlight.git
 cd starlight
+cp .env.json.example .env.json
+python3 manage.py loaddata starlight/fixtures/fixtures.json
 docker-compose up --build
 ```
 
