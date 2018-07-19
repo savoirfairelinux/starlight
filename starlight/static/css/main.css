@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
 
 body {
-  /*background: url('/static/images/starlight-background.png');*/
-  background-color: lightgray;
+  background-color: gray;
   background-size: 100% auto;
   font-family: 'Proxima Nova', 'Helvetica', sans-serif;
 }
@@ -15,8 +14,13 @@ body > .grid {
   vertical-align:right;
   overflow-x:scroll;
 }
-.ui .secondary .menu{
-  color: red
+.individual-competency-table{
+  overflow-y:scroll;
+  max-height: 850px;
+}
+.body-wrapper{
+  margin-top: -25%;
+  max-height: 50px;
 }
 .login-form{
   margin-left:200px;

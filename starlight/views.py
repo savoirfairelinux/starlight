@@ -4,7 +4,7 @@
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
-
+from django.contrib import messages
 from django.contrib.auth.views import logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -39,9 +39,11 @@ def edit_competency(request, employee, id):
         if form.is_valid():
             interest = form.cleaned_data['interest']
             experience = form.cleaned_data['experience']
-            competency_new, created = Competency.objects.get_or_create(skill=skill, interest=interest, experience=experience)
-            employee.competencies.remove(competency)
-            employee.competencies.add(competency_new)
+            competency_new, created = employee.competencies.all().get_or_create(skill=skill, interest=interest, experience=experience)
+            if created:
+                employee.competencies.add(competency_new)
+                employee.competencies.remove(competency)
+                messages.success(request, 'Competency succesfully edited')
 
             return HttpResponseRedirect('/{}/profile/'.format(employee.id))
 
@@ -57,12 +59,18 @@ def new_competency(request, employee):
         form = CompetencyForm(request.POST, employee=employee)
         if form.is_valid():
             skill = form.cleaned_data['skill']
-            interest = form.cleaned_data['interest']
-            experience = form.cleaned_data['experience']
-            competency_new, created = Competency.objects.get_or_create(skill=skill, interest=interest, experience=experience)
-            if not created:
-                employee.competencies.remove(competency_new)
+            competency_new = form.save(commit=False)
+
+            if employee.competencies.all().filter(skill=skill).exists():
+                employee.competencies.remove(employee.competencies.all().get(skill=skill))
+                competency_new.save()
                 employee.competencies.add(competency_new)
+                messages.success(request, 'Competency with this skill already exists, it has been updated')
+            else:
+                competency_new.save()
+                employee.competencies.add(competency_new)
+                messages.success(request, 'Competency successfully added')
+
             return HttpResponseRedirect('/{}/profile/'.format(employee.id))
 
     else:
