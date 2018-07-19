@@ -13,19 +13,47 @@
 </h1>
 <br>
 <h1 class="ui black image header">
-    <div class="content">
-        {% for competency in employee.competencies.all %}
-        {{competency}}
-        <button class="circular ui icon button" onclick="location.href='{% url 'edit_competency' id=competency.id employee=employee.id%}'">
-            <i> Edit</i>
-        </button>
-        <br>
-        {% endfor %}
-        <button class="circular ui icon button" onclick="location.href='{% url 'new_competency' employee=employee.id%}'">
-            <i> New Competency</i>
-        </button>
+    <div class="individual-competency-table">
+        <table class="ui inverted center aligned black table">
+            <thead>
+            <tr>
+                <th>Skill</th>
+                <th> Interest</th>
+                <th> Experience</th>
+                <th> Actions</th>
+            </tr>
+            </thead>
 
+            <tbody>
+            {% for competency in employee.competencies.all %}
+            <tr>
+                <td>
+                    {{competency.skill}}
+                </td>
+                <td>
+                    {{competency.interest}}. {{competency.get_interest_display}}
+                </td>
+                <td>
+                    {{competency.experience}}. {{competency.get_experience_display}}
+                </td>
+                <td>
+                    <button class="circular big ui icon button"
+                            onclick="location.href='{% url 'edit_competency' id=competency.id employee=employee.id%}'">
+                        <i> Edit</i>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
     </div>
+
+    <br>
+    <button class="circular small ui icon button" onclick="location.href='{% url 'new_competency' employee=employee.id%}'">
+        <i> New Competency</i>
+    </button>
+
 </h1>
 
 {% endblock %}

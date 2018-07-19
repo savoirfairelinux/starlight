@@ -42,7 +42,7 @@ def edit_competency(request, employee, id):
             competency_new, created = Competency.objects.get_or_create(skill=skill, interest=interest, experience=experience)
             employee.competencies.remove(competency)
             employee.competencies.add(competency_new)
-            employee.save()
+
             return HttpResponseRedirect('/{}/profile/'.format(employee.id))
 
     else:
@@ -60,8 +60,9 @@ def new_competency(request, employee):
             interest = form.cleaned_data['interest']
             experience = form.cleaned_data['experience']
             competency_new, created = Competency.objects.get_or_create(skill=skill, interest=interest, experience=experience)
-            employee.competencies.add(competency_new)
-            employee.save()
+            if not created:
+                employee.competencies.remove(competency_new)
+                employee.competencies.add(competency_new)
             return HttpResponseRedirect('/{}/profile/'.format(employee.id))
 
     else:

@@ -16,6 +16,8 @@ from django.db.models.deletion import CASCADE
 
 
 class Skill(models.Model):
+    class Meta:
+        ordering = ['name']
     name = models.CharField(max_length=60)
     is_technical = models.BooleanField(default=True)
 
@@ -26,6 +28,7 @@ class Skill(models.Model):
 class Competency(models.Model):
     class Meta:
         verbose_name_plural = 'competencies'
+        ordering = ['skill']
     INTEREST_CHOICES = (
         (1, 'Not interested'),
         (2, 'Interested to learn'),
@@ -48,7 +51,8 @@ class Competency(models.Model):
 
 
 class Employee(AbstractUser):
-
+    class Meta:
+        ordering = ['last_name']
     competencies = models.ManyToManyField(Competency, blank=True, related_name='employees')
 
     def __repr__(self):
