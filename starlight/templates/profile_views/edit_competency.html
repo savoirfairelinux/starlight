@@ -8,7 +8,7 @@
 
 <h1 class="ui black image header">
     <div class="header">
-        Competency: {{competency.skill}}
+        {%  trans "Competency: " %}{{competency.skill}}
     </div>
 </h1>
 
@@ -20,30 +20,22 @@
         <h1 class="ui black image header">
             <div class="content">
                 {% csrf_token%}
-                <div class="ui selection dropdown">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Interest</div>
-                    <div class="menu">
-                        {% for interest_choice in competency.INTEREST_CHOICES %}
-                        <div class="item"> {{interest_choice}}</div>
-                        {% endfor %}
-                    </div>
-                </div>
+                <select class="ui selection dropdown" name="interest" id="interest">
+                    {% for key, interest_choice in form.fields.interest.choices %}
+                        <option value="{{key}}" > {{interest_choice}}</option>
+                    {% endfor %}
+                </select>
                 <br> <br>
-                <div class="ui selection dropdown">
-                    <i class="dropdown icon"></i>
-                    <div class="default text">Experience</div>
-                    <div class="menu">
-                        {% for experience_choice in competency.EXPERIENCE_CHOICES %}
-                        <div class="item"> {{experience_choice}}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <br> <br>
+                <select class="ui selection dropdown" name="experience" id="experience">
+                    {% for key, experience_choice in form.fields.experience.choices %}
+                        <option value="{{key}}" > {{experience_choice}}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
                 <script type="text/javascript" src="/static/js/main.js"></script>
             </div>
 
-            <button class="ui fluid large blue button" type="submit">Save</button>
+            <button class="ui fluid large blue button" type="submit" value="Submit">Save</button>
         </h1>
     </form>
 </div>
