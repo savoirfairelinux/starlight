@@ -12,7 +12,6 @@ Required packages:
 git clone https://github.com/savoirfairelinux/starlight.git
 cd starlight
 cp .env.json.example .env.json
-python3 manage.py loaddata starlight/fixtures/fixtures.json
 docker-compose up --build
 ```
 
@@ -23,13 +22,18 @@ _Visit localhost:8000 in your browser_
 1. Create a super user for admin access
 
 ```bash
-docker exec -it starlight_web1 python3 manage.py createsuperuser
+docker-compose run --rm web python3 manage.py createsuperuser
 ```
-
-2. Develop
-
-3. Apply migrations
+2. Load fixture data
 
 ```bash
-docker exec -it starlight_web1 python3 manage.py makemigrations
-docker exec -it starlight_web1 python3 manage.py migrate
+docker-compose run --rm web python3 manage.py loaddata starlight/fixtures/fixtures.json
+```
+
+3. Develop
+
+4. Apply migrations
+
+```bash
+docker-compose run --rm web python3 manage.py makemigrations
+docker-compose run --rm web python3 manage.py migrate
