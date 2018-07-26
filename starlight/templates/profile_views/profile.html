@@ -5,67 +5,58 @@
 {% load i18n %}
 
 {% block content %}
-<div class="body-wrapper">
-    <h1 class="ui black image header">
-        <div class="header">
-            {% trans "Your Competencies: " %}
-        </div>
+
+<div class="ui center aligned grid container">
+  <div class="ten wide column">
+    <h1 class="ui black header">
+      {% trans "Your Competencies: " %}
     </h1>
-    <br>
-    <h1 class="ui black image header">
-        <div class="individual-competency-table">
-            <table class="ui inverted center aligned black table">
-                <thead>
-                <tr>
-                    <th>Skill</th>
-                    <th> Interest</th>
-                    <th> Experience</th>
-                    <th> Actions</th>
-                </tr>
-                </thead>
 
-                <tbody>
-                {% for competency in employee.competencies.all %}
-                <tr>
-                    <td>
-                        {{competency.skill}}
-                    </td>
-                    <td>
-                        {{competency.interest}}. {{competency.get_interest_display}}
-                    </td>
-                    <td>
-                        {{competency.experience}}. {{competency.get_experience_display}}
-                    </td>
-                    <td>
-                        <button class="ui fluid large blue button"
-                                onclick="location.href='{% url 'edit_competency' id=competency.id employee=employee.id%}'">
-                            <i> Edit</i>
-                        </button>
-                    </td>
-                </tr>
-                {% endfor %}
+    <div class="individual-competency-table">
+      <table class="ui inverted center aligned fluid black table">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Interest</th>
+            <th>Experience</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-                </tbody>
-            </table>
-        </div>
+        <tbody>
+          {% for competency in employee.competencies.all %}
+            <tr>
+              <td>
+                {{competency.skill}}
+              </td>
+              <td>
+                {{competency.interest}}. {{competency.get_interest_display}}
+              </td>
+              <td>
+                {{competency.experience}}. {{competency.get_experience_display}}
+              </td>
+              <td>
+                <button class="ui fluid large blue button" onclick="location.href='{% url 'edit_competency' id=competency.id employee=employee.id%}'">Edit</button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
-        <br>
-        <button class="ui fluid large blue button"
-                onclick="location.href='{% url 'new_competency' employee=employee.id%}'">
-            <i> New Competency</i>
-        </button>
+    <br />
+    <button class="ui fluid large blue button" onclick="location.href='{% url 'new_competency' employee=employee.id%}'">New Competency</button>
 
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li>
-                {{ message }}
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
 
-    </h1>
+  </div>
 </div>
 {% endblock %}
-

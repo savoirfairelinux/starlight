@@ -5,9 +5,9 @@ services:
     image: postgres
  web:
     build: .
-    command: > 
-         sh -c 
-          "python3 manage.py migrate 
+    command: >
+         sh -c
+          "python3 manage.py migrate
           python3 manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
@@ -18,10 +18,8 @@ services:
  livereload:
     build:
       context: ./
-    command: npm run webpack:dev
+    command: sh -c "npm run webpack:vendor && npm run webpack:dev"
     volumes:
       - ./starlight/static:/code/starlight/static:rw
     ports:
       - "8081:8081"
- 
-

@@ -59,7 +59,8 @@ project.db
 
 #Static generated files
 starlight/static/admin/
-starlight/static/webpack-stats.json
+starlight/static/webpack-stats-*.json
+starlight/static/*-manifest.json
 starlight/static/bundles/
 
 # Flask stuff:

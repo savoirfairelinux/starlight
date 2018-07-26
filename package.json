@@ -6,6 +6,7 @@
   "scripts": {
     "test": "test-npm",
     "webpack": "webpack",
+    "webpack:vendor": "webpack --config vendor.webpack.config.js",
     "webpack:dev": "webpack-dev-server"
   },
   "repository": {

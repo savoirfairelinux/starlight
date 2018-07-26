@@ -14,4 +14,5 @@ RUN pip3 install -r requirements.txt
 
 RUN rm -rf /code/starlight/static/build
 RUN npm rebuild node-sass
+RUN npm run webpack:vendor
 RUN npm run webpack
