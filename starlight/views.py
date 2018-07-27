@@ -82,3 +82,8 @@ def new_competency(request, employee):
 def logout_view(request):
     logout(request)
     return home(request)
+
+
+def all_profiles(request):
+    employees = Employee.objects.all()
+    return render(request, 'views/all_profiles.html', {'employees': employees, 'viewgroup': 'all_profiles'})

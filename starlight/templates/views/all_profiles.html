@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block title %}{% trans "All Profiles" %}{% endblock %}
+
+{% block content %}
+
+
+<div class="ui center aligned grid container">
+  <div class="ten wide column">
+    <h1 class="ui black header">
+      {% trans "All Profiles: " %}
+    </h1>
+
+    <div class="profiles-table">
+      <table class="ui inverted center aligned fluid black table">
+        <thead>
+          <tr>
+            <th>Employee</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for employee in employees.all %}
+            <tr>
+              <td>
+                <button class="ui fluid large blue button" onclick="location.href='{% url 'profile' id=employee.id %}'">{{ employee }}</button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <br />
+    <button class="ui fluid large blue button" >New Employee</button>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

@@ -32,11 +32,7 @@
       <tbody>
         {% for employee in employees %}
           <tr>
-            <th align="center">{{employee}}
-                {% if 'starlight.can_change_user' in perms %}
-                    <button class="ui fluid small blue button" onclick="location.href='{% url 'profile' id=employee.id%}'">Edit</button>
-                {% endif %}
-            </th>
+            <th align="center">{{employee}}</th>
             {% for skill in skills %}
               {% if not skill|search:employee.competencies.all %}
                 <td>

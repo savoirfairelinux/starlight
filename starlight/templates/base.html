@@ -16,7 +16,7 @@
   <body>
     <div class="ui top borderless inverted main menu">
       <a class="{% ifequal viewgroup 'home' %}active blue{% else %}black{% endifequal %} item" href="{% url 'home' %}"> Home </a>
-      <a class="black item">Individual Pages</a>
+      <a class="{% ifequal viewgroup 'all_profiles' %}active blue{% else %}black{% endifequal %} item" href="{% url 'all_profiles' %}">Individual Pages</a>
       {% if user.is_authenticated %}
         <a class="{% if viewgroup == 'profile' %}active blue item{% else %}black item{% endif %}" href="{% url 'profile' id=user.id %}"> {{user.username}} </a>
         <a class="black item" href="{% url 'logout' %}"> Logout </a>
