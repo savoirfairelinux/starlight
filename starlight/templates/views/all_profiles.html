@@ -36,7 +36,9 @@
     </div>
 
     <br />
-    <button class="ui fluid large blue button" >New Employee</button>
+    {% if 'starlight.can_change_user' in perms or user == employee %}
+        <button class="ui fluid small blue button" onclick="location.href='{% url 'new_employee' %}'">New Employee</button>
+    {% endif %}
 
     {% if messages %}
     <ul class="messages">

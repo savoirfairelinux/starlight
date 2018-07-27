@@ -10,7 +10,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 
-from starlight.forms import EditForm, CompetencyForm
+from starlight.admin import MyUserCreationForm
+from starlight.forms import EditForm, CompetencyForm, EmployeeForm
 from starlight.models import Skill, Employee, Competency
 
 
@@ -87,3 +88,21 @@ def logout_view(request):
 def all_profiles(request):
     employees = Employee.objects.all()
     return render(request, 'views/all_profiles.html', {'employees': employees, 'viewgroup': 'all_profiles'})
+
+
+def new_employee(request):
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password2']
+            email = form.cleaned_data['email']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            employee = Employee.objects.create(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
+            employee.save()
+            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+    else:
+        form = EmployeeForm()
+
+    return render(request, 'views/new_employee.html', {'form': form})

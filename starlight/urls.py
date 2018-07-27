@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/profile/$', views.profile, name='profile'),
     path('all_profiles/', views.all_profiles, name='all_profiles'),
     url(r'^(?P<employee>\d+)/profile/(?P<id>\d+)/competency/$', views.edit_competency, name='edit_competency'),
-    url(r'^(?P<employee>\d+)/profile/new_competency/$', views.new_competency, name='new_competency')
+    url(r'^(?P<employee>\d+)/profile/new_competency/$', views.new_competency, name='new_competency'),
+    path('new_employee/', views.new_employee, name='new_employee')
 ]
