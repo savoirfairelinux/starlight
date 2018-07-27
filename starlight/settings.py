@@ -179,7 +179,11 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'STATS_FILE': os.path.join(STATIC_ROOT, 'webpack-stats.json'),
+        'STATS_FILE': os.path.join(STATIC_ROOT, 'webpack-stats-app.json'),
+        'BUNDLE_DIR_NAME': 'build/'
+    },
+    'VENDOR': {
+        'STATS_FILE': os.path.join(STATIC_ROOT, 'webpack-stats-vendor.json'),
         'BUNDLE_DIR_NAME': 'build/'
     }
 }

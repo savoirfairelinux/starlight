@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="ui center aligned grid container">
+  <div class="ten wide column">
+    <h1 class="ui black header">
+      {% trans "Your Competencies: " %}
+    </h1>
+
+    <div class="individual-competency-table">
+      <table class="ui inverted center aligned fluid black table">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Interest</th>
+            <th>Experience</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for competency in employee.competencies.all %}
+            <tr>
+              <td>
+                {{competency.skill}}
+              </td>
+              <td>
+                {{competency.interest}}. {{competency.get_interest_display}}
+              </td>
+              <td>
+                {{competency.experience}}. {{competency.get_experience_display}}
+              </td>
+              <td>
+                <button class="ui fluid large blue button" onclick="location.href='{% url 'edit_competency' id=competency.id employee=employee.id%}'">Edit</button>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <br />
+    <button class="ui fluid large blue button" onclick="location.href='{% url 'new_competency' employee=employee.id%}'">New Competency</button>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

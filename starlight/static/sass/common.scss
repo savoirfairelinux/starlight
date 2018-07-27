@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
+
+body {
+  background-color: gray;
+  background-size: 100% auto;
+  font-family: 'Proxima Nova', 'Helvetica', sans-serif;
+}
+
+body > .grid {
+  height: 100%;
+}
+
+.competency-container {
+  display: block;
+  margin: 20px;
+  overflow-x: scroll;
+}
+
+ul {
+  list-style: none;
+}
+
+.header{
+  font-size: 50px;
+}

@@ -10,52 +10,48 @@
 
 {% load starlight_extras %}
 
-<h1 class="ui black image header">
-    <div class="content">
-        {% trans "Knowledge Table" %}
-    </div>
-</h1>
+<div class="ui competency-container">
+  <h1 class="ui black header">{% trans "Knowledge Table" %}</h1>
 
-<div class="competency-table">
-    <table class="ui inverted center aligned blue table">
-        <thead>
+  <div class="competency-table">
+    <table class="ui inverted center aligned black table">
+      <thead>
         <tr>
-            <td></td>
-            <th colspan="{{skills|length}}" align="center">Skill</th>
+          <th colspan="{{skills|length}}" align="center">{% trans "Skills" %}</th>
         </tr>
         <tr>
-            <th>Employee</th>
-            {% for skill in skills %}
-            <td align="center">
-                {{skill.name}}
-            </td>
-            {% endfor %}
+          <th>Employee</th>
+          {% for skill in skills %}
+          <td align="center">
+            {{skill.name}}
+          </td>
+          {% endfor %}
         </tr>
-        </thead>
+      </thead>
 
-        <tbody>
+      <tbody>
         {% for employee in employees %}
-        <tr>
+          <tr>
             <th align="center">{{employee}}</th>
             {% for skill in skills %}
-                {% if not skill|search:employee.competencies.all %}
+              {% if not skill|search:employee.competencies.all %}
+                <td>
+                    -
+                </td>
+              {% else %}
+                {% for employee_competency in employee.competencies.all %}
+                  {% if skill == employee_competency.skill %}
                     <td>
-                        -
+                      {{ employee_competency.get_interest_display }}, {{ employee_competency.get_experience_display }}
                     </td>
-                {% else %}
-                    {% for employee_competency in employee.competencies.all %}
-
-                    {% if skill == employee_competency.skill %}
-                    <td>
-                        {{ employee_competency.get_interest_display }}, {{ employee_competency.get_experience_display }}
-                    </td>
-                    {% endif %}
-                    {% endfor %}
-                {% endif %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
             {% endfor %}
-        </tr>
+          </tr>
         {% endfor %}
-        </tbody>
+      </tbody>
     </table>
+  </div>
 </div>
 {% endblock %}

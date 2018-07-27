@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="ui center aligned container grid">
+  <div class="six wide column">
+    <h1 class="ui black header">{% trans "New Competency" %}</h1>
+
+    <form action="." method="post" class="ui large form" id="competency_form">
+        {% csrf_token %}
+        <div class="field">
+          <select class="ui selection dropdown" name="skill" id="skill">
+              {% for key, skill_choice in form.fields.skill.choices %}
+                  <option value="{{ key }}"> {{ skill_choice }}</option>
+              {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <select class="ui selection dropdown" name="interest" id="interest">
+              {% for key, interest_choice in form.fields.interest.choices %}
+                  <option value="{{ key }}"> {{ interest_choice }}</option>
+              {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <select class="ui selection dropdown" name="experience" id="experience">
+              {% for key, experience_choice in form.fields.experience.choices %}
+                  <option value="{{ key }}"> {{ experience_choice }}</option>
+              {% endfor %}
+          </select>
+        </div>
+        <button class="ui fluid large blue button" type="submit" value="Submit">Save</button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
