@@ -38,7 +38,10 @@ class EmployeeForm(UserCreationForm):
     last_name = forms.CharField(max_length=100, required=True)
 
     def clean_password2(self):
-        if not self.cleaned_data['password1'] == self.cleaned_data['password2']:
+        try:
+            if not self.cleaned_data['password1'] == self.cleaned_data['password2']:
+                raise forms.ValidationError(self.fields['password2'].error_messages['error_matching'])
+        except KeyError:  # This happens if password1 is null and password2 is not
             raise forms.ValidationError(self.fields['password2'].error_messages['error_matching'])
 
         return self.cleaned_data['password2']

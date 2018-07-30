@@ -24,3 +24,11 @@ ul {
 .header{
   font-size: 50px;
 }
+
+body:not(.nohover) tbody tr:hover {
+  background-color: gray;
+}
+
+.errors{
+  color: red;
+}
