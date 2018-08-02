@@ -22,6 +22,7 @@ class TestFunctionality(unittest.TestCase):
 
         form = CompetencyForm(data={'skill': skill, 'interest': 2, 'experience': 3}, employee=employee)
         response = client.post('/{}/profile/new_competency/'.format(employee.id), {'form': form, 'viewgroup': 'profile'})  # Call our method
+        self.assertTrue(form.is_valid())
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(employee.competencies.all()), 4)
 
