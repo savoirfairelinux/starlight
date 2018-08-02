@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="ui center aligned container grid">
+  <div class="six wide column">
+    <h1 class="ui black header">{% trans "New Employee" %}</h1>
+
+    <form action="." method="post" class="ui large form" id="employee_form">
+        {% csrf_token %}
+        <div class="field">
+          <input name="username" id="username" type="text" placeholder="Username" {% if not form.username.value == None %} value="{{ form.username.value }}" {% endif %}>
+          <div class="errors">
+              {{ form.username.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <input name="password1" id="password1" type="password" placeholder="Password">
+          <div class="errors">
+              {{ form.password1.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <input name="password2" id="password2" type="password" placeholder="Confirm Password">
+          <div class="errors">
+              {{ form.password2.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <input name="email" id="email" type="email" placeholder="Email" {% if not form.email.value == None %} value="{{ form.email.value }}" {% endif %}>
+          <div class="errors">
+              {{ form.email.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <input name="first_name" id="first_name" type="text" placeholder="First Name" {% if not form.first_name.value == None %} value="{{ form.first_name.value }}" {% endif %}>
+          <div class="errors">
+              {{ form.first_name.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <input name="last_name" id="last_name" type="text" placeholder="Last_name" {% if not form.last_name.value == None %} value="{{ form.last_name.value }}" {% endif %}>
+          <div class="errors">
+              {{ form.last_name.errors }}
+          </div>
+        </div>
+        <button class="ui fluid large blue button" type="submit" value="Submit">Create</button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

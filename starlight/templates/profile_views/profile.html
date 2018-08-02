@@ -9,7 +9,11 @@
 <div class="ui center aligned grid container">
   <div class="ten wide column">
     <h1 class="ui black header">
-      {% trans "Your Competencies: " %}
+      {% if user == employee %}
+        {% trans "Your Competencies: " %}
+      {% else %}
+        {{ employee }}'s Competencies:
+      {% endif %}
     </h1>
 
     <div class="individual-competency-table">
@@ -36,7 +40,9 @@
                 {{competency.experience}}. {{competency.get_experience_display}}
               </td>
               <td>
-                <button class="ui fluid large blue button" onclick="location.href='{% url 'edit_competency' id=competency.id employee=employee.id%}'">Edit</button>
+                {% if 'starlight.can_change_user' in perms or user == employee %}
+                    <button class="ui fluid small blue button" onclick="location.href='{% url 'edit_competency' employee=employee.id id=competency.id %}'">Edit</button>
+                {% endif %}
               </td>
             </tr>
           {% endfor %}
@@ -45,7 +51,9 @@
     </div>
 
     <br />
-    <button class="ui fluid large blue button" onclick="location.href='{% url 'new_competency' employee=employee.id%}'">New Competency</button>
+    {% if 'starlight.can_change_user' in perms or user == employee %}
+        <button class="ui fluid large blue button" onclick="location.href='{% url 'new_competency' employee=employee.id%}'">New Competency</button>
+    {% endif %}
 
     {% if messages %}
     <ul class="messages">

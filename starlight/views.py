@@ -5,12 +5,15 @@
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
 from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.views import logout
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 
-from starlight.forms import EditForm, CompetencyForm
+from starlight.admin import MyUserCreationForm
+from starlight.forms import EditForm, CompetencyForm, EmployeeForm
 from starlight.models import Skill, Employee, Competency
 
 
@@ -33,6 +36,8 @@ def profile(request, id):
 def edit_competency(request, employee, id):
     competency = Competency.objects.get(pk=id)
     employee = Employee.objects.get(pk=employee)
+    if not request.user.has_perm('starlight.can_change_user') and not employee == request.user:
+        raise PermissionDenied({"message: You do not have permission to edit this"})
     skill = competency.skill
     if request.method == 'POST':
         form = EditForm(request.POST)
@@ -55,6 +60,8 @@ def edit_competency(request, employee, id):
 
 def new_competency(request, employee):
     employee = Employee.objects.get(pk=employee)
+    if not request.user.has_perm('starlight.can_change_user') and not employee == request.user:
+        raise PermissionDenied({"message: You do not have permission to edit this"})
     if request.method == 'POST':
         form = CompetencyForm(request.POST, employee=employee)
         if form.is_valid():
@@ -82,3 +89,28 @@ def new_competency(request, employee):
 def logout_view(request):
     logout(request)
     return home(request)
+
+
+def all_profiles(request):
+    employees = Employee.objects.all()
+    return render(request, 'views/all_profiles.html', {'employees': employees, 'viewgroup': 'all_profiles'})
+
+
+@user_passes_test(lambda u: u.has_perm('starlight.can_change_user'))
+def new_employee(request):
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password2']
+            email = form.cleaned_data['email']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            employee = Employee.objects.create(username=username, email=email, first_name=first_name, last_name=last_name)
+            employee.set_password(password)
+            employee.save()
+            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+    else:
+        form = EmployeeForm()
+
+    return render(request, 'views/new_employee.html', {'form': form})

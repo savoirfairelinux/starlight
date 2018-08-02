@@ -14,6 +14,7 @@ body > .grid {
   display: block;
   margin: 20px;
   overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 ul {
@@ -22,4 +23,12 @@ ul {
 
 .header{
   font-size: 50px;
+}
+
+body:not(.nohover) tbody tr:hover {
+  background-color: gray;
+}
+
+.errors{
+  color: red;
 }
