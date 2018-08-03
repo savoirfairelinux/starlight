@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import PasswordInput
 
-from starlight.models import Competency, Skill, Employee
+from starlight.models import Competency, Skill, Employee, Team
 
 
 class EditForm(forms.ModelForm):
@@ -36,6 +36,7 @@ class EmployeeForm(UserCreationForm):
     email = forms.EmailField(max_length=150, required=True)
     first_name = forms.CharField(max_length=100, required=True)
     last_name = forms.CharField(max_length=100, required=True)
+    teams = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, required=False, queryset=Team.objects.all())
 
     def clean_password2(self):
         try:

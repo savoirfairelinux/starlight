@@ -48,6 +48,14 @@
               {{ form.last_name.errors }}
           </div>
         </div>
+        <div class="field">
+          <select class="ui selection dropdown" name="teams" id="teams">
+                 <option disabled selected value> Team </option>
+              {% for key, teams_choice in form.fields.teams.choices %}
+                  <option value="{{ key }}"> {{ teams_choice }}</option>
+              {% endfor %}
+          </select>
+        </div>
         <button class="ui fluid large blue button" type="submit" value="Submit">Create</button>
     </form>
   </div>

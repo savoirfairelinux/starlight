@@ -50,10 +50,21 @@ class Competency(models.Model):
         return '{}: Interest: {}/{}, Experience: {}/{}'.format(self.skill.name, self.interest, len(self.INTEREST_CHOICES), self.experience, len(self.EXPERIENCE_CHOICES))
 
 
+class Team(models.Model):
+    class Meta:
+        ordering = ['name']
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Employee(AbstractUser):
     class Meta:
         ordering = ['last_name']
     competencies = models.ManyToManyField(Competency, blank=True, related_name='employees')
+    teams = models.ManyToManyField(Team, related_name='teams', blank=True)
 
     def __repr__(self):
         return 'Employee: {} {}'.format(self.first_name, self.last_name)

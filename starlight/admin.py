@@ -3,7 +3,8 @@ from django.contrib import admin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserChangeForm, UserCreationForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from starlight.models import Skill, Competency, Employee
+from starlight.models import Skill, Competency, Employee, Team
+
 
 class MyUserCreationForm(UserCreationForm):
     """A form for creating new users. Includes all the required
@@ -56,15 +57,16 @@ class UserAdmin(BaseUserAdmin):
     form = MyUserChangeForm
     fieldsets = (
         (None, {
-            'fields': ('username', 'password', 'email', 'first_name', 'last_name', 'user_permissions', 'competencies')}
+            'fields': ('username', 'password', 'email', 'first_name', 'last_name', 'teams', 'user_permissions', 'competencies')}
         ),
     )
     add_fieldsets = (
         (None, {
-            'fields': ( 'username','password1', 'password2' , 'email', 'first_name', 'last_name', 'user_permissions', 'competencies')}
+            'fields': ( 'username','password1', 'password2' , 'email', 'first_name', 'last_name', 'teams', 'user_permissions', 'competencies')}
         ),
     )
 
 admin.site.register(Skill)
 admin.site.register(Competency)
 admin.site.register(Employee, UserAdmin)
+admin.site.register(Team)
