@@ -1,0 +1,28 @@
+language: python
+
+python:
+  - "3.4"
+  - "3.5"
+  - "3.6"
+
+env:
+  - DJANGO=1.11.*
+  - DJANGO=2.0.*
+
+matrix:
+  include:
+    - { python: 3.6, env: TOXENV=flake8 DJANGO=2.0.* }
+    - { python: 3.6, env: TOXENV=isort DJANGO=2.0.* }
+
+install:
+  - pip install pipenv
+  - pipenv install -d tox django==$DJANGO python-coveralls
+
+before_script:
+  - cp .env.json.example .env.json
+
+script:
+  - pipenv run tox
+
+after_success:
+  - coveralls
