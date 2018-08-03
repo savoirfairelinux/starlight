@@ -18,7 +18,7 @@ before_script:
   - cp .env.json.example .env.json
 
 script:
-  - pipenv run tox
+  - tox
 
 after_success:
   - coveralls
