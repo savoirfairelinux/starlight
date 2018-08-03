@@ -12,9 +12,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 
-from starlight.admin import MyUserCreationForm
-from starlight.forms import EditForm, CompetencyForm, EmployeeForm
-from starlight.models import Skill, Employee, Competency
+from starlight.forms import EditForm, CompetencyForm, EmployeeForm, TeamForm
+from starlight.models import Skill, Employee, Competency, Team
 
 
 def home(request):
@@ -106,7 +105,9 @@ def new_employee(request):
             email = form.cleaned_data['email']
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
+            teams = form.cleaned_data['teams']
             employee = Employee.objects.create(username=username, email=email, first_name=first_name, last_name=last_name)
+            employee.teams.add(*teams)
             employee.set_password(password)
             employee.save()
             return HttpResponseRedirect('/{}/profile/'.format(employee.id))
@@ -114,3 +115,27 @@ def new_employee(request):
         form = EmployeeForm()
 
     return render(request, 'views/new_employee.html', {'form': form})
+
+
+def teams(request):
+    teams = Team.objects.all()
+    return render(request, 'views/teams.html', {'teams': teams, 'viewgroup': 'teams'})
+
+
+def team(request, id):
+    team = Team.objects.get(pk=id)
+    employees = Employee.objects.filter(teams=team)
+    return render(request, 'views/team.html', {'team': team, 'employees': employees, 'viewgroup': 'teams'})
+
+
+@user_passes_test(lambda u: u.has_perm('starlight.can_change_team'))
+def new_team(request):
+    if request.method == 'POST':
+        form = TeamForm(request.POST)
+        if form.is_valid():
+            team = form.save()
+            return HttpResponseRedirect('/teams/')
+    else:
+        form = TeamForm()
+
+    return render(request, 'views/new_team.html', {'form': form, 'viewgroup': 'teams'})

@@ -9,11 +9,13 @@
 <div class="ui center aligned grid container">
   <div class="ten wide column">
     <h1 class="ui black header">
-      {% if user == employee %}
-        {% trans "Your Competencies: " %}
-      {% else %}
-        {{ employee }}'s Competencies:
-      {% endif %}
+      {{ employee }}
+      <br>
+      {% trans "Team(s): " %}
+      {% for team in employee.teams.all %}
+        {{ team.name }}
+      {% if not forloop.last %},{% endif %}
+      {% endfor %}
     </h1>
 
     <div class="individual-competency-table">

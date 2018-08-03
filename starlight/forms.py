@@ -46,3 +46,11 @@ class EmployeeForm(UserCreationForm):
             raise forms.ValidationError(self.fields['password2'].error_messages['error_matching'])
 
         return self.cleaned_data['password2']
+
+
+class TeamForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = ['name', 'description']
+    name = forms.CharField(label='name', max_length=100, required=True)
+    description = forms.CharField(label='description', widget=forms.Textarea, required=False)
