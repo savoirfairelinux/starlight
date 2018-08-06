@@ -17,19 +17,30 @@
     <table class="ui inverted center aligned black table">
       <thead>
         <tr>
-          <th colspan="{{skills|length}}" align="center">{% trans "Skills" %}</th>
+          <th colspan="{{employees|length}}" align="center">{% trans "Employees" %}</th>
         </tr>
         <tr>
-          <th>Employee</th>
-          {% for skill in skills %}
-          <td align="center">
-            {{skill.name}}
+          <th> </th>
+          {% for team in teams %}
+          <td colspan="{{ team|get_employees|length }}" align="center">
+            {{team.name}}
           </td>
           {% endfor %}
         </tr>
       </thead>
 
       <tbody>
+        <tr>
+            <td>
+                Skill
+            </td>
+            {% for employee in employees %}
+                <td>{{ employee }}</td>
+            {% endfor %}
+        </tr>
+
+
+
         {% for employee in employees %}
           <tr>
             <th align="center">{{employee}}</th>

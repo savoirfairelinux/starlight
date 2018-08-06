@@ -19,7 +19,8 @@ from starlight.models import Skill, Employee, Competency, Team
 def home(request):
     skills = Skill.objects.order_by('name')
     employees = Employee.objects.all()
-    return render(request, 'views/home.html', {'skills': skills, 'employees': employees, 'viewgroup': 'home'})
+    teams = Team.objects.all()
+    return render(request, 'views/home.html', {'skills': skills, 'employees': employees, 'teams': teams, 'viewgroup': 'home'})
 
 
 @csrf_protect
