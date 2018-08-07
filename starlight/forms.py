@@ -54,3 +54,7 @@ class TeamForm(forms.ModelForm):
         fields = ['name', 'description']
     name = forms.CharField(label='name', max_length=100, required=True)
     description = forms.CharField(label='description', widget=forms.Textarea, required=False)
+
+
+class FilterTeamForm(forms.Form):
+    name = forms.ModelChoiceField(queryset=Team.objects.all())

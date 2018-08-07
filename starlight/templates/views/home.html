@@ -13,34 +13,38 @@
 <div class="ui competency-container">
   <h1 class="ui black header">{% trans "Knowledge Table" %}</h1>
 
+<h1 class="ui black header">Filter by team: </h1>
+
+<form action="." method="post" class="ui small form" id="team_filter_form">
+    {% csrf_token %}
+    <div class="field">
+        <select class="ui selection dropdown" name="name" id="name">
+              <option value="All">All</option>
+              {% for key, teams_choice in form.fields.name.choices %}
+                  <option value="{{ key }}"> {{ teams_choice }}</option>
+              {% endfor %}
+        </select>
+    </div>
+    <button class="ui fluid large blue search button" type="submit" value="Submit">Filter</button>
+</form>
+
   <div class="competency-table">
     <table class="ui inverted center aligned black table">
       <thead>
         <tr>
-          <th colspan="{{employees|length}}" align="center">{% trans "Employees" %}</th>
+          <th colspan="{{skills|length}}" align="center">{% trans "Skills" %}</th>
         </tr>
         <tr>
-          <th> </th>
-          {% for team in teams %}
-          <td colspan="{{ team|get_employees|length }}" align="center">
-            {{team.name}}
+          <th>Employee</th>
+          {% for skill in skills %}
+          <td align="center">
+            {{skill.name}}
           </td>
           {% endfor %}
         </tr>
       </thead>
 
       <tbody>
-        <tr>
-            <td>
-                Skill
-            </td>
-            {% for employee in employees %}
-                <td>{{ employee }}</td>
-            {% endfor %}
-        </tr>
-
-
-
         {% for employee in employees %}
           <tr>
             <th align="center">{{employee}}</th>

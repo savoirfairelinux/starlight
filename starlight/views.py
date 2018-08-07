@@ -12,15 +12,32 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 
-from starlight.forms import EditForm, CompetencyForm, EmployeeForm, TeamForm
+from starlight.forms import EditForm, CompetencyForm, EmployeeForm, TeamForm, FilterTeamForm
 from starlight.models import Skill, Employee, Competency, Team
 
 
 def home(request):
+    if request.method == 'POST':
+        form = FilterTeamForm(request.POST)
+        if form.is_valid():
+            filter_team = form.cleaned_data['name']
+            filter_name = filter_team.name
+        else:
+            filter_name = None
+    else:
+        form = FilterTeamForm()
+        filter_name = None
+
     skills = Skill.objects.order_by('name')
-    employees = Employee.objects.all()
-    teams = Team.objects.all()
-    return render(request, 'views/home.html', {'skills': skills, 'employees': employees, 'teams': teams, 'viewgroup': 'home'})
+
+    if filter_name and not filter_name == 'All':
+        teams = Team.objects.get(name=filter_name)
+        employees = Employee.objects.filter(teams=teams)
+    else:
+        teams = Team.objects.all()
+        employees = Employee.objects.all()
+
+    return render(request, 'views/home.html', {'form': form, 'skills': skills, 'employees': employees, 'teams': teams, 'viewgroup': 'home'})
 
 
 @csrf_protect
