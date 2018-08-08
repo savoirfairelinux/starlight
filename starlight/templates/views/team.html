@@ -31,11 +31,17 @@
             <tr>
               <td>
                 <button class="ui fluid large blue button" onclick="location.href='{% url 'profile' id=employee.id %}'">{{ employee }}</button>
+                  {% if 'starlight.can_change_user' in perms and 'starlight.can_change_team' in perms %}
+                    <button class="ui fluid small red button" onclick="location.href='{% url 'remove_from_team' team=team.id id=employee.id  %}'">Remove</button>
+                  {% endif %}
               </td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
+      {% if 'starlight.can_change_team' in perms %}
+          <button class="ui fluid small blue button" onclick="location.href='{% url 'edit_team' id=team.id %}'">Edit Team</button>
+      {% endif %}
     </div>
 
     {% if messages %}

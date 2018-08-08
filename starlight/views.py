@@ -157,3 +157,30 @@ def new_team(request):
         form = TeamForm()
 
     return render(request, 'views/new_team.html', {'form': form, 'viewgroup': 'teams'})
+
+
+@user_passes_test(lambda u: u.has_perm('starlight.can_change_team') and u.has_perm('starlight.can_change_user'))
+def remove_from_team(request, team, id):
+    team = Team.objects.get(pk=team)
+    employee = Employee.objects.get(pk=id)
+    if team in employee.teams.all():
+        employee.teams.remove(team)
+    employees = Employee.objects.filter(teams=team)
+
+    return render(request, 'views/team.html', {'team': team, 'employees': employees, 'viewgroup': 'teams'})
+
+
+@user_passes_test(lambda u: u.has_perm('starlight.can_change_team'))
+def edit_team(request, id):
+    team = Team.objects.get(pk=id)
+    if request.method == 'POST':
+        form = TeamForm(request.POST, instance=team)
+        if form.is_valid():
+            form.save()
+            employees = Employee.objects.filter(teams=team)
+            return render(request, 'views/team.html', {'team': team, 'employees': employees, 'viewgroup': 'teams'})
+
+    else:
+        form = TeamForm()
+
+    return render(request, 'views/edit_team.html', {'team': team, 'form': form, 'viewgroup': 'teams'})

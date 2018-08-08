@@ -32,5 +32,7 @@ urlpatterns = [
     path('new_employee/', views.new_employee, name='new_employee'),
     path('teams/', views.view_all_teams, name='teams'),
     url(r'^(?P<id>\d+)/team/$', views.view_team, name='team'),
-    path('new_team/', views.new_team, name='new_team')
+    path('new_team/', views.new_team, name='new_team'),
+    url(r'^(?P<team>\d+)/team/(?P<id>\d+)/remove/$', views.remove_from_team, name='remove_from_team'),
+    url(r'^(?P<id>\d+)/team/edit/$', views.edit_team, name='edit_team')
 ]
