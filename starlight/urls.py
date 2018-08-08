@@ -23,7 +23,7 @@ from starlight import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('login/', django.contrib.auth.views.login, {'template_name': 'login/login.html'}, name='login'),
+    path('login/', django.contrib.auth.views.LoginView.as_view(template_name='login/login.html'), name='login'),
     path('logout/', views.logout_view, name='logout'),
     url(r'^(?P<id>\d+)/profile/$', views.profile, name='profile'),
     path('all_profiles/', views.all_profiles, name='all_profiles'),
