@@ -19,7 +19,6 @@
     {% csrf_token %}
     <div class="field">
         <select class="ui selection dropdown" name="name" id="name">
-              <option value="All">All</option>
               {% for key, teams_choice in form.fields.name.choices %}
                   <option value="{{ key }}"> {{ teams_choice }}</option>
               {% endfor %}

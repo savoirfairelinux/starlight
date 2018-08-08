@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.views import logout
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 
 from starlight.forms import EditForm, CompetencyForm, EmployeeForm, TeamForm, FilterTeamForm
@@ -30,7 +30,7 @@ def home(request):
 
     skills = Skill.objects.order_by('name')
 
-    if filter_name and not filter_name == 'All':
+    if filter_name:
         teams = Team.objects.get(name=filter_name)
         employees = Employee.objects.filter(teams=teams)
     else:
@@ -135,12 +135,12 @@ def new_employee(request):
     return render(request, 'views/new_employee.html', {'form': form})
 
 
-def teams(request):
+def view_all_teams(request):
     teams = Team.objects.all()
     return render(request, 'views/teams.html', {'teams': teams, 'viewgroup': 'teams'})
 
 
-def team(request, id):
+def view_team(request, id):
     team = Team.objects.get(pk=id)
     employees = Employee.objects.filter(teams=team)
     return render(request, 'views/team.html', {'team': team, 'employees': employees, 'viewgroup': 'teams'})
@@ -152,7 +152,7 @@ def new_team(request):
         form = TeamForm(request.POST)
         if form.is_valid():
             team = form.save()
-            return HttpResponseRedirect('/teams/')
+            return redirect('teams')
     else:
         form = TeamForm()
 

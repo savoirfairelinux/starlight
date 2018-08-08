@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^(?P<employee>\d+)/profile/(?P<id>\d+)/competency/$', views.edit_competency, name='edit_competency'),
     url(r'^(?P<employee>\d+)/profile/new_competency/$', views.new_competency, name='new_competency'),
     path('new_employee/', views.new_employee, name='new_employee'),
-    path('teams/', views.teams, name='teams'),
-    url(r'^(?P<id>\d+)/team/$', views.team, name='team'),
+    path('teams/', views.view_all_teams, name='teams'),
+    url(r'^(?P<id>\d+)/team/$', views.view_team, name='team'),
     path('new_team/', views.new_team, name='new_team')
 ]
