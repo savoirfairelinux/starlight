@@ -6,7 +6,7 @@
 # License, or (at your option) any later version.
 from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth.views import logout
+from django.contrib.auth import logout
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -179,7 +179,6 @@ def edit_team(request, id):
             form.save()
             employees = Employee.objects.filter(teams=team)
             return render(request, 'views/team.html', {'team': team, 'employees': employees, 'viewgroup': 'teams'})
-
     else:
         form = TeamForm()
 
