@@ -16,6 +16,16 @@
       {{ team.name }}
       <br>
       {{ team.description }}
+
+      <form action="{% url 'home' %}" method="post" class="ui small form" id="team_show_filter_form">
+        {% csrf_token %}
+          <div class="field" style="display: none;">
+            <select class="ui selection dropdown" name="name" id="name">
+                <option value="{{ team.id }}" selected > {{ teams_choice }} </option>
+            </select>
+          </div>
+          <button class="ui fluid tiny yellow button" type="submit" value="Submit"> View in Table </button>
+      </form>
     </h1>
 
     <div class="team-table">

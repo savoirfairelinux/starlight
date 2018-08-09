@@ -168,7 +168,7 @@ def new_team(request):
     else:
         form = TeamForm()
 
-    return render(request, 'views/new_team.html', {'form': form, 'viewgroup': 'teams'})
+    return render(request, 'views/edit_team.html', {'form': form, 'viewgroup': 'teams', 'form_type': 'new'})
 
 
 @user_passes_test(lambda u: u.has_perm('starlight.can_change_team') and u.has_perm('starlight.can_change_user'))
@@ -192,4 +192,4 @@ def edit_team(request, id):
     else:
         form = TeamForm()
 
-    return render(request, 'views/edit_team.html', {'team': team, 'form': form, 'viewgroup': 'teams'})
+    return render(request, 'views/edit_team.html', {'team': team, 'form': form, 'viewgroup': 'teams', 'form_type': 'edit'})

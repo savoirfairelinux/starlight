@@ -8,18 +8,24 @@
 
 <div class="ui center aligned container grid">
   <div class="six wide column">
-    <h1 class="ui black header">{% trans "Edit Team:" %} {{ team.name }}</h1>
+    <h1 class="ui black header">
+        {% if form_type == 'edit' %}
+            {% trans "Edit Team:" %} {{ team.name }}
+        {% else %}
+            {% trans "New Team:" %}
+        {% endif %}
+    </h1>
 
     <form action="." method="post" class="ui large form" id="team_form">
         {% csrf_token %}
         <div class="field">
-          <input name="name" id="name" type="text" value={{ team.name }}>
+          <input name="name" id="name" type="text" placeholder="Name" value={{ team.name }}>
           <div class="errors">
               {{ form.name.errors }}
           </div>
         </div>
         <div class="field">
-          <input name="description" id="description" type="text" value="{{ team.description|striptags }}">
+          <input name="description" id="description" type="text" placeholder="Description" value="{{ team.description|striptags }}">
           <div class="errors">
               {{ form.description.errors }}
           </div>
