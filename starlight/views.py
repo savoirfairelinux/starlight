@@ -12,7 +12,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_protect
 
-from starlight.forms import EditForm, CompetencyForm, EmployeeForm, TeamForm, FilterTeamForm
+from starlight.forms import EditForm, CompetencyForm, EmployeeForm, TeamForm, FilterTeamForm, AddtoTeamForm
 from starlight.models import Skill, Employee, Competency, Team
 
 
@@ -143,7 +143,15 @@ def view_all_teams(request):
 def view_team(request, id):
     team = Team.objects.get(pk=id)
     employees = Employee.objects.filter(teams=team)
-    return render(request, 'views/team.html', {'team': team, 'employees': employees, 'viewgroup': 'teams'})
+    if request.method == 'POST':
+        form = AddtoTeamForm(request.POST)
+        if form.is_valid():
+            employee = form.cleaned_data['employee']
+            employee.teams.add(team)
+    else:
+        form = AddtoTeamForm()
+
+    return render(request, 'views/team.html', {'form': form, 'team': team, 'employees': employees, 'viewgroup': 'teams'})
 
 
 @user_passes_test(lambda u: u.has_perm('starlight.can_change_team'))

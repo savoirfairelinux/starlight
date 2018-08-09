@@ -58,3 +58,7 @@ class TeamForm(forms.ModelForm):
 
 class FilterTeamForm(forms.Form):
     name = forms.ModelChoiceField(queryset=Team.objects.all())
+
+
+class AddtoTeamForm(forms.Form):
+    employee = forms.ModelChoiceField(queryset=Employee.objects.all())

@@ -261,924 +261,16 @@
   },
   {
     "model": "starlight.competency",
-    "pk": 13,
-    "fields": {
-      "skill": 6,
-      "interest": 4,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 14,
-    "fields": {
-      "skill": 6,
-      "interest": 4,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 15,
-    "fields": {
-      "skill": 6,
-      "interest": 1,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 16,
-    "fields": {
-      "skill": 2,
-      "interest": 4,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 17,
-    "fields": {
-      "skill": 2,
-      "interest": 4,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 18,
-    "fields": {
-      "skill": 1,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 19,
-    "fields": {
-      "skill": 6,
-      "interest": 4,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 20,
-    "fields": {
-      "skill": 2,
-      "interest": 2,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 21,
-    "fields": {
-      "skill": 6,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 24,
-    "fields": {
-      "skill": 2,
-      "interest": 4,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 25,
-    "fields": {
-      "skill": 5,
-      "interest": 4,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 26,
-    "fields": {
-      "skill": 8,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 27,
-    "fields": {
-      "skill": 5,
-      "interest": 1,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 28,
-    "fields": {
-      "skill": 4,
-      "interest": 2,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 29,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 30,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 31,
-    "fields": {
-      "skill": 4,
-      "interest": 2,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 32,
-    "fields": {
-      "skill": 8,
-      "interest": 1,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 33,
-    "fields": {
-      "skill": 8,
-      "interest": 2,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 34,
-    "fields": {
-      "skill": 8,
-      "interest": 4,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 35,
-    "fields": {
-      "skill": 8,
-      "interest": 1,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 36,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 37,
-    "fields": {
-      "skill": 13,
-      "interest": 3,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 38,
-    "fields": {
-      "skill": 14,
-      "interest": 3,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 39,
-    "fields": {
-      "skill": 14,
-      "interest": 4,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 40,
+    "pk": 118,
     "fields": {
       "skill": 12,
-      "interest": 3,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 41,
-    "fields": {
-      "skill": 12,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 43,
-    "fields": {
-      "skill": 15,
-      "interest": 1,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 45,
-    "fields": {
-      "skill": 17,
-      "interest": 3,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 46,
-    "fields": {
-      "skill": 17,
-      "interest": 3,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 47,
-    "fields": {
-      "skill": 19,
       "interest": 2,
       "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 48,
-    "fields": {
-      "skill": 15,
-      "interest": 2,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 49,
-    "fields": {
-      "skill": 18,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 50,
-    "fields": {
-      "skill": 14,
-      "interest": 2,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 51,
-    "fields": {
-      "skill": 8,
-      "interest": 1,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 52,
-    "fields": {
-      "skill": 14,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 53,
-    "fields": {
-      "skill": 19,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 54,
-    "fields": {
-      "skill": 8,
-      "interest": 1,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 55,
-    "fields": {
-      "skill": 17,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 56,
-    "fields": {
-      "skill": 19,
-      "interest": 1,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 57,
-    "fields": {
-      "skill": 15,
-      "interest": 4,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 58,
-    "fields": {
-      "skill": 15,
-      "interest": 3,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 59,
-    "fields": {
-      "skill": 15,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 60,
-    "fields": {
-      "skill": 10,
-      "interest": 4,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 61,
-    "fields": {
-      "skill": 15,
-      "interest": 1,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 62,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 63,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 64,
-    "fields": {
-      "skill": 10,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 65,
-    "fields": {
-      "skill": 10,
-      "interest": 1,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 66,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 67,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 68,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 69,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 70,
-    "fields": {
-      "skill": 4,
-      "interest": 3,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 71,
-    "fields": {
-      "skill": 2,
-      "interest": 1,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 72,
-    "fields": {
-      "skill": 11,
-      "interest": 3,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 73,
-    "fields": {
-      "skill": 6,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 74,
-    "fields": {
-      "skill": 5,
-      "interest": 3,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 75,
-    "fields": {
-      "skill": 5,
-      "interest": 1,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 76,
-    "fields": {
-      "skill": 2,
-      "interest": 2,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 77,
-    "fields": {
-      "skill": 13,
-      "interest": 3,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 78,
-    "fields": {
-      "skill": 5,
-      "interest": 3,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 79,
-    "fields": {
-      "skill": 5,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 80,
-    "fields": {
-      "skill": 9,
-      "interest": 1,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 81,
-    "fields": {
-      "skill": 14,
-      "interest": 3,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 82,
-    "fields": {
-      "skill": 7,
-      "interest": 4,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 83,
-    "fields": {
-      "skill": 17,
-      "interest": 3,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 84,
-    "fields": {
-      "skill": 3,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 85,
-    "fields": {
-      "skill": 16,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 86,
-    "fields": {
-      "skill": 15,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 87,
-    "fields": {
-      "skill": 1,
-      "interest": 4,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 88,
-    "fields": {
-      "skill": 17,
-      "interest": 3,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 89,
-    "fields": {
-      "skill": 17,
-      "interest": 1,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 90,
-    "fields": {
-      "skill": 17,
-      "interest": 2,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 91,
-    "fields": {
-      "skill": 11,
-      "interest": 3,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 92,
-    "fields": {
-      "skill": 10,
-      "interest": 4,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 93,
-    "fields": {
-      "skill": 8,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 94,
-    "fields": {
-      "skill": 17,
-      "interest": 3,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 95,
-    "fields": {
-      "skill": 5,
-      "interest": 3,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 96,
-    "fields": {
-      "skill": 18,
-      "interest": 3,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 97,
-    "fields": {
-      "skill": 12,
-      "interest": 4,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 98,
-    "fields": {
-      "skill": 12,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 99,
-    "fields": {
-      "skill": 5,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 100,
-    "fields": {
-      "skill": 12,
-      "interest": 3,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 101,
-    "fields": {
-      "skill": 7,
-      "interest": 4,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 102,
-    "fields": {
-      "skill": 17,
-      "interest": 1,
-      "experience": 2
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 103,
-    "fields": {
-      "skill": 12,
-      "interest": 3,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 104,
-    "fields": {
-      "skill": 13,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 105,
-    "fields": {
-      "skill": 8,
-      "interest": 2,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 106,
-    "fields": {
-      "skill": 13,
-      "interest": 1,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 107,
-    "fields": {
-      "skill": 9,
-      "interest": 1,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 108,
-    "fields": {
-      "skill": 9,
-      "interest": 3,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 109,
-    "fields": {
-      "skill": 7,
-      "interest": 1,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 110,
-    "fields": {
-      "skill": 8,
-      "interest": 4,
-      "experience": 3
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 111,
-    "fields": {
-      "skill": 11,
-      "interest": 2,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 112,
-    "fields": {
-      "skill": 15,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 113,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 1
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 114,
-    "fields": {
-      "skill": 4,
-      "interest": 1,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 115,
-    "fields": {
-      "skill": 10,
-      "interest": 2,
-      "experience": 5
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 116,
-    "fields": {
-      "skill": 8,
-      "interest": 1,
-      "experience": 4
-    }
-  },
-  {
-    "model": "starlight.competency",
-    "pk": 117,
-    "fields": {
-      "skill": 7,
-      "interest": 3,
-      "experience": 1
     }
   },
   {
     "model": "starlight.team",
-    "pk": 1,
-    "fields": {
-      "name": "Mobile",
-      "description": "For developing mobile applications"
-    }
-  },
-  {
-    "model": "starlight.team",
-    "pk": 2,
+    "pk": 10,
     "fields": {
       "name": "Web",
       "description": "For developing web applications"
@@ -1186,18 +278,18 @@
   },
   {
     "model": "starlight.team",
-    "pk": 3,
+    "pk": 11,
     "fields": {
-      "name": "Sales",
-      "description": "Selling things"
+      "name": "Mobile",
+      "description": "For mobile applications"
     }
   },
   {
     "model": "starlight.team",
-    "pk": 4,
+    "pk": 12,
     "fields": {
-      "name": "Management",
-      "description": ""
+      "name": "Sales",
+      "description": "Selling things"
     }
   },
   {
@@ -1222,7 +314,7 @@
         8
       ],
       "teams": [
-        4
+        10
       ]
     }
   },
@@ -1245,9 +337,7 @@
       "competencies": [
         1
       ],
-      "teams": [
-        2
-      ]
+      "teams": []
     }
   },
   {
@@ -1255,7 +345,7 @@
     "pk": 5,
     "fields": {
       "password": "pbkdf2_sha256$100000$RSNlu3IKydFa$NfOCDDcAFK3pmYL8JahSiH/Bpn37F3Yn9ovkYM+7Nvo=",
-      "last_login": "2018-07-30T18:25:07.239Z",
+      "last_login": "2018-07-05T19:54:59Z",
       "is_superuser": true,
       "username": "JohnLennon",
       "first_name": "John",
@@ -1265,58 +355,15 @@
       "is_active": true,
       "date_joined": "2018-07-05T19:54:49Z",
       "groups": [],
-      "user_permissions": [
-        1,
-        2,
-        3,
-        7,
-        8,
-        9,
-        4,
+      "user_permissions": [],
+      "competencies": [
         5,
         6,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        27,
-        26,
-        25,
-        28,
-        22,
-        23,
-        24
-      ],
-      "competencies": [
-        96,
-        94,
-        100,
-        99,
-        82,
-        110,
-        108,
-        111,
-        70,
-        112,
-        85,
-        73,
-        84,
-        92,
-        87,
-        76,
-        106,
-        81
+        7
       ],
       "teams": [
-        1
+        11,
+        12
       ]
     }
   },
@@ -1342,8 +389,7 @@
         3
       ],
       "teams": [
-        3,
-        2
+        11
       ]
     }
   },
@@ -1364,14 +410,12 @@
       "groups": [],
       "user_permissions": [],
       "competencies": [
-        101,
+        3,
         2,
         1
       ],
       "teams": [
-        4,
-        1,
-        2
+        12
       ]
     }
   },
@@ -1397,115 +441,59 @@
         12
       ],
       "teams": [
-        3
+        11
       ]
     }
   },
   {
     "model": "starlight.employee",
-    "pk": 9,
+    "pk": 21,
     "fields": {
-      "password": "pbkdf2_sha256$100000$9VJzZkP6rjHG$GBg5vu6rHCIaxfmhMWsROPC1hMSha8Ynx1RJXwsMyOs=",
-      "last_login": "2018-08-07T20:09:41.164Z",
+      "password": "pbkdf2_sha256$100000$FAlmHvjqmHeD$vF+RVMrmYR2dtgpLAIr8X5Nf0wfSJk9Ok7CCibd9YqM=",
+      "last_login": "2018-08-09T13:59:52.853Z",
       "is_superuser": true,
-      "username": "HKane",
-      "first_name": "Harry",
-      "last_name": "Kane",
-      "email": "harry.kane@starlight.com",
+      "username": "Monkeyman",
+      "first_name": "Curious",
+      "last_name": "George",
+      "email": "monkey@starlight.com",
       "is_staff": true,
       "is_active": true,
-      "date_joined": "2018-07-11T19:23:02.148Z",
+      "date_joined": "2018-08-09T13:28:12.431Z",
       "groups": [],
-      "user_permissions": [],
-      "competencies": [
-        114,
+      "user_permissions": [
+        32,
+        33,
+        34,
+        38,
+        39,
+        40,
+        35,
+        36,
+        37,
+        41,
+        42,
         43,
-        7,
-        11,
-        10,
-        9,
-        8
+        44,
+        45,
+        46,
+        50,
+        51,
+        52,
+        56,
+        57,
+        58,
+        47,
+        48,
+        49,
+        53,
+        54,
+        55
+      ],
+      "competencies": [
+        118
       ],
       "teams": [
-        1
-      ]
-    }
-  },
-  {
-    "model": "starlight.employee",
-    "pk": 10,
-    "fields": {
-      "password": "pbkdf2_sha256$100000$fz3efczo94yd$/ThyZ37a8Ok3LS7mpMOFtrbbVCUyGQ3OzpSCZ563eFM=",
-      "last_login": "2018-08-03T19:42:55.661Z",
-      "is_superuser": false,
-      "username": "NotAnAdmin",
-      "first_name": "Not",
-      "last_name": "Admin",
-      "email": "not.admin@starlight.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2018-07-27T14:50:24.262Z",
-      "groups": [],
-      "user_permissions": [],
-      "competencies": [
-        96,
-        90,
-        102,
-        103,
-        4,
-        115,
-        104
-      ],
-      "teams": []
-    }
-  },
-  {
-    "model": "starlight.employee",
-    "pk": 13,
-    "fields": {
-      "password": "pk1234567",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "PKSubban",
-      "first_name": "PK",
-      "last_name": "Subban",
-      "email": "pksubban@starlight.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2018-07-27T21:04:30.076Z",
-      "groups": [],
-      "user_permissions": [],
-      "competencies": [
-        109,
-        105
-      ],
-      "teams": [
-        4
-      ]
-    }
-  },
-  {
-    "model": "starlight.employee",
-    "pk": 19,
-    "fields": {
-      "password": "pbkdf2_sha256$100000$WwxeV1sN2fm8$XHQedQu3RaSOt94MJLHNNBHTFeL732Z2n4um0v5pMnQ=",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "Zucky123",
-      "first_name": "Mark",
-      "last_name": "Zuckerberg",
-      "email": "zuck@starlight.com",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2018-08-03T18:44:59.717Z",
-      "groups": [],
-      "user_permissions": [],
-      "competencies": [
-        116
-      ],
-      "teams": [
-        1,
-        2
+        10
       ]
     }
   }
