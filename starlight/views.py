@@ -31,8 +31,12 @@ def home(request):
     skills = Skill.objects.order_by('name')
 
     if filter_name:
-        teams = Team.objects.get(name=filter_name)
-        employees = Employee.objects.filter(teams=teams)
+        if filter_name == 'unassigned':
+            teams = None
+            employees = Employee.objects.filter(teams__isnull=True)
+        else:
+            teams = Team.objects.get(name=filter_name)
+            employees = Employee.objects.filter(teams=teams)
     else:
         teams = Team.objects.all()
         employees = Employee.objects.all()
@@ -173,9 +177,8 @@ def remove_from_team(request, team, id):
     employee = Employee.objects.get(pk=id)
     if team in employee.teams.all():
         employee.teams.remove(team)
-    employees = Employee.objects.filter(teams=team)
 
-    return render(request, 'views/team.html', {'team': team, 'employees': employees, 'viewgroup': 'teams'})
+    return redirect('team', id=team.id)
 
 
 @user_passes_test(lambda u: u.has_perm('starlight.can_change_team'))
@@ -185,8 +188,7 @@ def edit_team(request, id):
         form = TeamForm(request.POST, instance=team)
         if form.is_valid():
             form.save()
-            employees = Employee.objects.filter(teams=team)
-            return render(request, 'views/team.html', {'team': team, 'employees': employees, 'viewgroup': 'teams'})
+            return redirect('team', id=team.id)
     else:
         form = TeamForm()
 
