@@ -23,14 +23,14 @@ def home(request):
             filter_team = form.cleaned_data['name']
             filter_name = filter_team.name
         else:
-            filter_name = None
+            filter_name = form['name'].value()
     else:
         form = FilterTeamForm()
         filter_name = None
 
     skills = Skill.objects.order_by('name')
 
-    if filter_name:
+    if filter_name and not filter_name == 'empty':
         if filter_name == 'unassigned':
             teams = None
             employees = Employee.objects.filter(teams__isnull=True)

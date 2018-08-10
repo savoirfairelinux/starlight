@@ -19,13 +19,13 @@
     {% csrf_token %}
     <div class="field">
         <select class="ui selection dropdown" name="name" id="name">
-              <option value=None>-------</option>
+              <option value="empty" selected>--------</option>
               {% for key, teams_choice in form.fields.name.choices %}
                   <option value="{{ key }}"
                           {% if form.name.value == key|floatformat:"0" %} selected {% endif %}> {{ teams_choice }}
                   </option>
               {% endfor %}
-              <option value="unassigned"> Unassigned </option>
+              <option {% if form.name.value == 'unassigned' %} selected {% endif %} value="unassigned"> *Unassigned* </option>
         </select>
     </div>
     <button class="ui fluid large blue search button" type="submit" value="Submit">Filter</button>
