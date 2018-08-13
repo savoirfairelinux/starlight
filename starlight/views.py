@@ -20,17 +20,15 @@ def home(request):
     if request.method == 'POST':
         form = FilterTeamForm(request.POST)
         if form.is_valid():
-            filter_team = form.cleaned_data['name']
-            filter_name = filter_team.name
+            filter_name = Team.objects.get(pk=form.cleaned_data['name']).name \
+                if not form.cleaned_data['name'] == '0' else 'unassigned'
         else:
-            filter_name = form['name'].value()
+            filter_name = None
     else:
         form = FilterTeamForm()
         filter_name = None
 
-    skills = Skill.objects.order_by('name')
-
-    if filter_name and not filter_name == 'empty':
+    if filter_name:
         if filter_name == 'unassigned':
             teams = None
             employees = Employee.objects.filter(teams__isnull=True)
@@ -40,6 +38,8 @@ def home(request):
     else:
         teams = Team.objects.all()
         employees = Employee.objects.all()
+        
+    skills = Skill.objects.order_by('name')
 
     return render(request, 'views/home.html', {'form': form, 'skills': skills, 'employees': employees, 'teams': teams, 'viewgroup': 'home'})
 

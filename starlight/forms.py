@@ -57,7 +57,7 @@ class TeamForm(forms.ModelForm):
 
 
 class FilterTeamForm(forms.Form):
-    name = forms.ModelChoiceField(queryset=Team.objects.all())
+    name = forms.ChoiceField(choices=[(team.id, team.name) for team in list(Team.objects.all())] + [('0', '*Unassigned*')])
 
 
 class AddtoTeamForm(forms.Form):

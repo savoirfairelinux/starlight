@@ -25,7 +25,6 @@
                           {% if form.name.value == key|floatformat:"0" %} selected {% endif %}> {{ teams_choice }}
                   </option>
               {% endfor %}
-              <option {% if form.name.value == 'unassigned' %} selected {% endif %} value="unassigned"> *Unassigned* </option>
         </select>
     </div>
     <button class="ui fluid large blue search button" type="submit" value="Submit">Filter</button>
