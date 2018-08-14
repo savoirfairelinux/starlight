@@ -38,10 +38,10 @@ def home(request):
     else:
         teams = Team.objects.all()
         employees = Employee.objects.all()
-        
     skills = Skill.objects.order_by('name')
 
-    return render(request, 'views/home.html', {'form': form, 'skills': skills, 'employees': employees, 'teams': teams, 'viewgroup': 'home'})
+    return render(request, 'views/home.html', {'form': form, 'skills': skills,
+                                               'employees': employees, 'teams': teams, 'viewgroup': 'home'})
 
 
 @csrf_protect
