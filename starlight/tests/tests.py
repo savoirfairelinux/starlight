@@ -1,10 +1,33 @@
-import unittest
+from unittest import TestCase
 
+from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.test import Client
 
 from starlight.forms import CompetencyForm, EditForm
 from starlight.models import Employee, Skill, Competency
+
+
+class TestCompetencies(TestCase):
+
+    def setUp(cls):
+        cls.test_user = User.objects.create_superuser(
+            username='admin',
+            email='testadmin@example.com',
+            password='test1234'
+        )
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class TestFunctionality(unittest.TestCase):
