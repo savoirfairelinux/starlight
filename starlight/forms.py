@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import PasswordInput
 
-from starlight.models import Competency, Skill, Employee
+from starlight.models import Competency, Skill, Employee, Team
 
 
 class EditForm(forms.ModelForm):
@@ -36,6 +36,7 @@ class EmployeeForm(UserCreationForm):
     email = forms.EmailField(max_length=150, required=True)
     first_name = forms.CharField(max_length=100, required=True)
     last_name = forms.CharField(max_length=100, required=True)
+    teams = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple, required=False, queryset=Team.objects.all())
 
     def clean_password2(self):
         try:
@@ -45,3 +46,19 @@ class EmployeeForm(UserCreationForm):
             raise forms.ValidationError(self.fields['password2'].error_messages['error_matching'])
 
         return self.cleaned_data['password2']
+
+
+class TeamForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = ['name', 'description']
+    name = forms.CharField(label='name', max_length=100, required=True)
+    description = forms.CharField(label='description', widget=forms.Textarea, required=False)
+
+
+class FilterTeamForm(forms.Form):
+    name = forms.ChoiceField(choices=[(team.id, team.name) for team in list(Team.objects.all())] + [('0', '*Unassigned*')])
+
+
+class AddtoTeamForm(forms.Form):
+    employee = forms.ModelChoiceField(queryset=Employee.objects.all())
