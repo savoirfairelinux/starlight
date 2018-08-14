@@ -56,12 +56,12 @@ class UserAdmin(BaseUserAdmin):
     form = MyUserChangeForm
     fieldsets = (
         (None, {
-            'fields': ('username', 'password', 'email', 'first_name', 'last_name', 'competencies')}
+            'fields': ('username', 'password', 'email', 'first_name', 'last_name', 'user_permissions', 'competencies')}
         ),
     )
     add_fieldsets = (
         (None, {
-            'fields': ( 'username','password1', 'password2' , 'email', 'first_name', 'last_name', 'competencies')}
+            'fields': ( 'username','password1', 'password2' , 'email', 'first_name', 'last_name', 'user_permissions', 'competencies')}
         ),
     )
 
