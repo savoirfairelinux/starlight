@@ -1,50 +1,127 @@
-from unittest import TestCase
-
-from django.contrib.auth.models import User
-from django.core.management import call_command
-from django.test import Client
-from starlight.forms import CompetencyForm, EditForm
-from starlight.models import Employee, Skill
+from django.test import Client, TestCase
+from django.urls import reverse
+from rest_framework import status
+from starlight.models import Employee
+from starlight.tests.factories import (
+    CompetencyFactory,
+    SkillFactory,
+    TeamFactory
+)
 
 
 class TestCompetencies(TestCase):
 
     def setUp(cls):
-        cls.test_user = User.objects.create_superuser(
-            username='admin',
+        cls.test_user = Employee.objects.create_user(
+            username='competency_user',
             email='testadmin@example.com',
             password='test1234'
         )
+        cls.test_skill = SkillFactory(
+            name='Docker',
+            is_technical=True
+        )
+        cls.test_competency = CompetencyFactory(
+            skill=cls.test_skill,
+            interest=3,
+            experience=4
+        )
+        cls.client = Client()
+        cls.client.login(username='competency_user', password='test1234')
+
+    def test_add_competency(self):
+        data = {'skill': self.test_skill, 'interest': 1, 'experience': 1}
+        url = reverse('new_competency', kwargs={'employee': self.test_user.id})
+        response = self.client.post(url, data, follow=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_edit_competency(self):
+        data = {'interest': 1, 'experience': 5}
+        url = reverse('edit_competency', kwargs={'employee': self.test_user.id, 'id': self.test_competency.id})
+        response = self.client.post(url, data, follow=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_remove_competency(self):
+        # Test functions with 'pass' mean that the views have not yet been created for that functionality
+        pass
 
 
-class TestFunctionality(TestCase):
-    """Functional Tests"""
+class TestEmployees(TestCase):
 
-    def setUp(self):
-        # Load fixtures
-        call_command('loaddata', '/code/starlight/fixtures/fixtures.json', verbosity=0)
+    def setUp(cls):
+        cls.test_user = Employee.objects.create_superuser(
+            username='employee_user',
+            email='test@example.com',
+            password='test1234'
+        )
+        cls.test_team = TeamFactory(
+            name='Web',
+            description='Developping web applications'
+        )
+        cls.client = Client()
+        cls.client.login(username='employee_user', password='test1234')
 
-    """ Create a new employee and check that a new competency can be added"""
-    def test_add_competency_success(self):
-        client = Client()
-        employee = Employee.objects.first()  # Get first employee
-        skill = Skill.objects.first()  # Get first skill object
+    def test_add_employee(self):
+        data = {'username': 'starboy', 'password': 'test12345',
+                'email': 'starboy@starlight.com', 'first_name': 'star', 'last_name': 'boy', 'teams': self.test_team}
+        url = reverse('new_employee')
+        response = self.client.post(url, data, follow=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        form = CompetencyForm(data={'skill': skill, 'interest': 2, 'experience': 3}, employee=employee)
-        response = client.post('/{}/profile/new_competency/'.format(employee.id),
-                               {'form': form, 'viewgroup': 'profile'})  # Call our method
-        self.assertTrue(form.is_valid())
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(employee.competencies.all()), 4)
+    def test_edit_employee(self):
+        pass
 
-    def test_edit_competency_success(self):
-        client = Client()
-        employee = Employee.objects.first()
-        competency = employee.competencies.first()
-        self.assertEqual(competency.interest, 1)
-        form = EditForm(data={'interest': 2, 'experience': 3})
-        self.assertTrue(form.is_valid())
-        response = client.post('/{}/profile/{}/competency/'.format(employee.id, competency.id),
-                               {'form': form, 'competency': competency, 'viewgroup': 'profile'})
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(competency.interest, 2)
+    def test_remove_employee(self):
+        pass
+
+
+class TestTeams(TestCase):
+
+    def setUp(cls):
+        cls.test_user = Employee.objects.create_superuser(
+            username='team_user',
+            email='test@example.com',
+            password='test1234'
+        )
+        cls.test_team = TeamFactory(
+            name='test_team',
+            description='testing team'
+        )
+        cls.client = Client()
+        cls.client.login(username='team_user', password='test1234')
+
+    def test_add_team(self):
+        data = {'name': 'test', 'description': 'For testing teams'}
+        url = reverse('new_team')
+        response = self.client.post(url, data, follow=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_edit_team(self):
+        data = {'name': self.test_team.name, 'description': 'description changed!'}
+        url = reverse('edit_team', kwargs={'id': self.test_team.id})
+        response = self.client.post(url, data, follow=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_remove_team(self):
+        pass
+
+
+class TestSkills(TestCase):
+
+    def setUp(cls):
+        cls.test_user = Employee.objects.create_superuser(
+            username='skill_user',
+            email='test@example.com',
+            password='test1234'
+        )
+        cls.client = Client()
+        cls.client.login(username='skill_user', password='test1234')
+
+    def test_add_skill(self):
+        pass
+
+    def test_edit_skill(self):
+        pass
+
+    def test_remove_skill(self):
+        pass

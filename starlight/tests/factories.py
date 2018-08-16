@@ -1,6 +1,6 @@
 import factory
 from django.contrib.auth.models import User
-from starlight.models import Competency, Employee, Skill
+from starlight.models import Competency, Employee, Skill, Team
 
 
 class UserFactory(factory.DjangoModelFactory):
@@ -11,7 +11,6 @@ class UserFactory(factory.DjangoModelFactory):
 
 
 class EmployeeFactory(factory.DjangoModelFactory):
-
     class Meta:
         model = Employee
 
@@ -31,10 +30,17 @@ class SkillFactory(factory.DjangoModelFactory):
 
 
 class CompetencyFactory(factory.DjangoModelFactory):
-
     class Meta:
         model = Competency
 
     skill = factory.SubFactory(SkillFactory)
     interest = (2, 'Interested to learn')
     experience = (2, 'Two to four years')
+
+
+class TeamFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = Team
+
+    name = factory.Faker('name')
+    description = factory.Faker('description')
