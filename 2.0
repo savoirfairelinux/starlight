@@ -1,5 +1,0 @@
-Collecting Django
-  Downloading https://files.pythonhosted.org/packages/51/1a/e0ac7886c7123a03814178d7517dc822af0fe51a72e1a6bff26153103322/Django-2.1-py3-none-any.whl (7.3MB)
-Requirement already satisfied: pytz in /home/alaye/.local/lib/python3.6/site-packages (from Django) (2018.4)
-Installing collected packages: Django
-Successfully installed Django-2.1
