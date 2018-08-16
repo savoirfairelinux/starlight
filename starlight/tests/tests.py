@@ -5,7 +5,7 @@ from django.core.management import call_command
 from django.test import Client
 
 from starlight.forms import CompetencyForm, EditForm
-from starlight.models import Employee, Skill, Competency
+from starlight.models import Employee, Skill
 
 
 class TestCompetencies(TestCase):
@@ -18,19 +18,7 @@ class TestCompetencies(TestCase):
         )
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-class TestFunctionality(unittest.TestCase):
+class TestFunctionality(TestCase):
     """Functional Tests"""
 
     def setUp(self):
@@ -44,7 +32,8 @@ class TestFunctionality(unittest.TestCase):
         skill = Skill.objects.first()  # Get first skill object
 
         form = CompetencyForm(data={'skill': skill, 'interest': 2, 'experience': 3}, employee=employee)
-        response = client.post('/{}/profile/new_competency/'.format(employee.id), {'form': form, 'viewgroup': 'profile'})  # Call our method
+        response = client.post('/{}/profile/new_competency/'.format(employee.id),
+                               {'form': form, 'viewgroup': 'profile'})  # Call our method
         self.assertTrue(form.is_valid())
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(employee.competencies.all()), 4)
@@ -56,6 +45,7 @@ class TestFunctionality(unittest.TestCase):
         self.assertEqual(competency.interest, 1)
         form = EditForm(data={'interest': 2, 'experience': 3})
         self.assertTrue(form.is_valid())
-        response = client.post('/{}/profile/{}/competency/'.format(employee.id, competency.id), {'form': form, 'competency': competency, 'viewgroup': 'profile'})
+        response = client.post('/{}/profile/{}/competency/'.format(employee.id, competency.id),
+                               {'form': form, 'competency': competency, 'viewgroup': 'profile'})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(competency.interest, 2)
