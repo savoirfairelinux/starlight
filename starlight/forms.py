@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import PasswordInput
-
-from starlight.models import Competency, Skill, Employee, Team
+from starlight.models import Competency, Employee, Skill, Team
 
 
 class EditForm(forms.ModelForm):

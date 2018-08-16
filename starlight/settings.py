@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import json
 import os
-import sys
-
 import pathlib
+import sys
 
 from django.core.exceptions import ImproperlyConfigured
 

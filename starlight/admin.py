@@ -1,9 +1,12 @@
 from django import forms
 from django.contrib import admin
-from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserChangeForm, UserCreationForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-
-from starlight.models import Skill, Competency, Employee, Team
+from django.contrib.auth.forms import (
+    ReadOnlyPasswordHashField,
+    UserChangeForm,
+    UserCreationForm
+)
+from starlight.models import Competency, Employee, Skill, Team
 
 
 class MyUserCreationForm(UserCreationForm):

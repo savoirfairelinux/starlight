@@ -1,7 +1,5 @@
-from django.contrib.auth.models import User
-
 import factory
-
+from django.contrib.auth.models import User
 from starlight.models import Competency, Employee, Skill
 
 

@@ -5,15 +5,21 @@
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
 from django.contrib import messages
-from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_protect
-
-from starlight.forms import EditForm, CompetencyForm, EmployeeForm, TeamForm, FilterTeamForm, AddtoTeamForm
-from starlight.models import Skill, Employee, Competency, Team
+from starlight.forms import (
+    AddtoTeamForm,
+    CompetencyForm,
+    EditForm,
+    EmployeeForm,
+    FilterTeamForm,
+    TeamForm
+)
+from starlight.models import Competency, Employee, Skill, Team
 
 
 def home(request):
