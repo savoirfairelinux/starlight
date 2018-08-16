@@ -13,6 +13,24 @@
 <div class="ui competency-container">
   <h1 class="ui black header">{% trans "Knowledge Table" %}</h1>
 
+<h1 class="ui black header">Filter by team: </h1>
+
+<form action="." method="post" class="ui small form" id="team_filter_form">
+    {% csrf_token %}
+    <div class="field">
+        <select class="ui selection dropdown" name="name" id="name">
+              <option value="empty" selected>--------</option>
+              {% for key, teams_choice in form.fields.name.choices %}
+                  <option value="{{ key }}"
+                          {% if form.name.value == key|floatformat:"0" %} selected {% endif %}> {{ teams_choice }}
+                  </option>
+              {% endfor %}
+              <option value="unassigned" {% if form.name.value == 'unassigned' %} selected {% endif %}> *Unassigned* </option>
+        </select>
+    </div>
+    <button class="ui fluid large blue search button" type="submit" value="Submit">Filter</button>
+</form>
+
   <div class="competency-table">
     <table class="ui inverted center aligned black table">
       <thead>

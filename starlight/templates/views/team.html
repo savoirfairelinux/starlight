@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Team" %}{% endblock %}
+
+{% block content %}
+
+
+<div class="ui center aligned grid container">
+  <div class="ten wide column">
+    <h1 class="ui black header">
+      {% trans "Team: " %}
+      {{ team.name }}
+      <br>
+      {{ team.description }}
+
+      <form action="{% url 'home' %}" method="post" class="ui small form" id="team_show_filter_form">
+        {% csrf_token %}
+          <div class="field" style="display: none;">
+            <select class="ui selection dropdown" name="name" id="name">
+                <option value="{{ team.id }}" selected > {{ teams_choice }} </option>
+            </select>
+          </div>
+          <button class="ui fluid tiny yellow button" type="submit" value="Submit"> View in Table </button>
+      </form>
+    </h1>
+
+    <div class="team-table">
+      <table class="ui inverted center aligned fluid black table">
+        <thead>
+          <tr>
+            <th>Members</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for employee in employees.all %}
+            <tr>
+              <td>
+                <button class="ui fluid large blue button" onclick="location.href='{% url 'profile' id=employee.id %}'">{{ employee }}</button>
+                  {% if 'starlight.can_change_user' in perms and 'starlight.can_change_team' in perms %}
+                    <button class="ui fluid small red button" onclick="location.href='{% url 'remove_from_team' team=team.id id=employee.id  %}'">Remove</button>
+                  {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+
+            {% if 'starlight.can_change_user' in perms and 'starlight.can_change_team' in perms %}
+            <tr>
+              <td>
+                <form action="." method="post" class="ui small form" id="competency_form">
+                {% csrf_token %}
+                    <div class="field">
+                        <select class="ui selection dropdown" name="employee" id="employee">
+                        {% for key, employee in form.fields.employee.choices %}
+                            <option value="{{ key }}"> {{ employee }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+              </td>
+              <td>
+                  <button class="ui fluid tiny blue button" type="submit" value="Submit">Add</button>
+              </td>
+                </form>
+            </tr>
+            {% endif %}
+        </tbody>
+
+      </table>
+      {% if 'starlight.can_change_team' in perms %}
+          <button class="ui fluid small blue button" onclick="location.href='{% url 'edit_team' id=team.id %}'">Edit Team</button>
+      {% endif %}
+    </div>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

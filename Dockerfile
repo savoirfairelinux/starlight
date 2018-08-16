@@ -5,7 +5,7 @@ RUN mkdir /code
 WORKDIR /code
 COPY ./ /code/
 
-RUN apk add --no-cache make nodejs postgresql-dev gcc python3-dev\
+RUN apk add --no-cache make nodejs npm postgresql-dev gcc python3-dev\
   musl-dev gcc g++ python && \
   npm install --lts --silent && \
   apk del make g++ python

@@ -23,11 +23,16 @@ from starlight import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('login/', django.contrib.auth.views.login, {'template_name': 'login/login.html'}, name='login'),
+    path('login/', django.contrib.auth.views.LoginView.as_view(template_name='login/login.html'), name='login'),
     path('logout/', views.logout_view, name='logout'),
     url(r'^(?P<id>\d+)/profile/$', views.profile, name='profile'),
     path('all_profiles/', views.all_profiles, name='all_profiles'),
     url(r'^(?P<employee>\d+)/profile/(?P<id>\d+)/competency/$', views.edit_competency, name='edit_competency'),
     url(r'^(?P<employee>\d+)/profile/new_competency/$', views.new_competency, name='new_competency'),
-    path('new_employee/', views.new_employee, name='new_employee')
+    path('new_employee/', views.new_employee, name='new_employee'),
+    path('teams/', views.view_all_teams, name='teams'),
+    url(r'^(?P<id>\d+)/team/$', views.view_team, name='team'),
+    path('new_team/', views.new_team, name='new_team'),
+    url(r'^(?P<team>\d+)/team/(?P<id>\d+)/remove/$', views.remove_from_team, name='remove_from_team'),
+    url(r'^(?P<id>\d+)/team/edit/$', views.edit_team, name='edit_team')
 ]
