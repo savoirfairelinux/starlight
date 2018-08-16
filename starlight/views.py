@@ -20,15 +20,15 @@ def home(request):
     if request.method == 'POST':
         form = FilterTeamForm(request.POST)
         if form.is_valid():
-            filter_name = Team.objects.get(pk=form.cleaned_data['name']).name \
-                if not form.cleaned_data['name'] == '0' else 'unassigned'
+            filter_team = form.cleaned_data['name']
+            filter_name = filter_team.name
         else:
-            filter_name = None
+            filter_name = form['name'].value()
     else:
         form = FilterTeamForm()
         filter_name = None
 
-    if filter_name:
+    if filter_name and not filter_name == 'empty':
         if filter_name == 'unassigned':
             teams = None
             employees = Employee.objects.filter(teams__isnull=True)

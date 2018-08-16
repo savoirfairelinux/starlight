@@ -444,57 +444,5 @@
         11
       ]
     }
-  },
-  {
-    "model": "starlight.employee",
-    "pk": 21,
-    "fields": {
-      "password": "pbkdf2_sha256$100000$FAlmHvjqmHeD$vF+RVMrmYR2dtgpLAIr8X5Nf0wfSJk9Ok7CCibd9YqM=",
-      "last_login": "2018-08-09T13:59:52.853Z",
-      "is_superuser": true,
-      "username": "Monkeyman",
-      "first_name": "Curious",
-      "last_name": "George",
-      "email": "monkey@starlight.com",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2018-08-09T13:28:12.431Z",
-      "groups": [],
-      "user_permissions": [
-        32,
-        33,
-        34,
-        38,
-        39,
-        40,
-        35,
-        36,
-        37,
-        41,
-        42,
-        43,
-        44,
-        45,
-        46,
-        50,
-        51,
-        52,
-        56,
-        57,
-        58,
-        47,
-        48,
-        49,
-        53,
-        54,
-        55
-      ],
-      "competencies": [
-        118
-      ],
-      "teams": [
-        10
-      ]
-    }
   }
 ]
