@@ -77,3 +77,19 @@ class EmployeeEditForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.employee = kwargs.pop('employee')  # cache the user object you pass in
         super(EmployeeEditForm, self).__init__(*args, **kwargs)  # and carry on to init the form
+
+
+class SkillForm(forms.ModelForm):
+    class Meta:
+        model = Skill
+        fields = ['name', 'is_technical']
+    name = forms.CharField(label='name', max_length=75, required=True,
+                           error_messages={'error_duplicate': 'Skill with this name already exists'})
+    is_technical = forms.ChoiceField(choices=[(True, 'Technical'), (False, 'Non-Technical')])
+
+    def clean_name(self):
+        for skill in Skill.objects.all():
+            if skill.name == self.cleaned_data['name']:
+                raise forms.ValidationError(self.fields['name'].error_messages['error_duplicate'])
+
+        return self.cleaned_data['name']

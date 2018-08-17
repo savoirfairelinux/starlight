@@ -18,6 +18,7 @@ from starlight.forms import (
     EmployeeEditForm,
     EmployeeForm,
     FilterTeamForm,
+    SkillForm,
     TeamForm
 )
 from starlight.models import Competency, Employee, Skill, Team
@@ -228,3 +229,30 @@ def edit_profile(request, id):
 
     return render(request, 'profile_views/edit_profile.html',
                   {'form': form, 'employee': employee, 'viewgroup': 'profile'})
+
+
+def view_all_skills(request):
+    skills = Skill.objects.all()
+    return render(request, 'views/skills.html', {'skills': skills, 'viewgroup': 'skills'})
+
+
+def view_skill(request, id):
+    skill = Skill.objects.get(pk=id)
+    competencies = skill.competency_set.all()
+    employees = Employee.objects.filter(competencies__skill__id=id)
+
+    return render(request, 'views/skill.html', {'skill': skill, 'employees': employees,
+                                                'competencies': competencies, 'viewgroup': 'skills'})
+
+
+@user_passes_test(lambda u: u.has_perm('starlight.can_change_skill'))
+def new_skill(request):
+    if request.method == 'POST':
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('all_skills')
+    else:
+        form = SkillForm()
+
+    return render(request, 'views/new_skill.html', {'form': form, 'viewgroup': 'skills'})

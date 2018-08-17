@@ -126,7 +126,10 @@ class TestSkills(TestCase):
         cls.client.login(username='skill_user', password='test1234')
 
     def test_add_skill(self):
-        pass
+        data = {'name': 'technical_skill', 'is_technical': False}
+        url = reverse('new_skill')
+        response = self.client.post(url, data, follow=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_edit_skill(self):
         pass

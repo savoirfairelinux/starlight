@@ -34,5 +34,8 @@ urlpatterns = [
     path('new_team/', views.new_team, name='new_team'),
     url(r'^(?P<team>\d+)/team/(?P<id>\d+)/remove/$', views.remove_from_team, name='remove_from_team'),
     url(r'^(?P<id>\d+)/team/edit/$', views.edit_team, name='edit_team'),
-    url(r'^(?P<id>\d+)/profile/edit/$', views.edit_profile, name='edit_profile')
+    url(r'^(?P<id>\d+)/profile/edit/$', views.edit_profile, name='edit_profile'),
+    path('skills/', views.view_all_skills, name='all_skills'),
+    url(r'^(?P<id>\d+)/skill/$', views.view_skill, name='skill'),
+    path('new_skill/', views.new_skill, name='new_skill')
 ]
