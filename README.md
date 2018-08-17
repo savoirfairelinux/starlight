@@ -37,3 +37,12 @@ docker-compose run --rm web python3 manage.py loaddata starlight/fixtures/fixtur
 ```bash
 docker-compose run --rm web python3 manage.py makemigrations
 docker-compose run --rm web python3 manage.py migrate
+```
+## Testing
+
+From the root directory, execute:
+
+```
+tox
+```
+
