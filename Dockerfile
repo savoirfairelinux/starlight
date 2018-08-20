@@ -5,9 +5,9 @@ RUN mkdir /code
 WORKDIR /code
 COPY ./ /code/
 
-RUN apk add --no-cache make nodejs npm postgresql-dev gcc python3-dev\
-  musl-dev gcc g++ python && \
-  npm install --lts --silent && \
+RUN apk add --no-cache make nodejs postgresql-dev gcc python3-dev\
+  musl-dev gcc g++ python
+RUN npm install --lts --silent && \
   apk del make g++ python
 
 RUN pip3 install -r requirements.txt
