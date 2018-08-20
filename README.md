@@ -1,5 +1,7 @@
-# starlight
+# Starlight
 Cross-functional skill tracking system for Agile teams. 🌟
+
+[![Build Status](https://travis-ci.org/savoirfairelinux/starlight.svg?branch=master)](https://travis-ci.org/savoirfairelinux/starlight) [![Coverage Status](https://coveralls.io/repos/github/savoirfairelinux/starlight/badge.svg?branch=master)](https://coveralls.io/github/savoirfairelinux/starlight?branch=master)
 
 ## Installation
 
@@ -45,4 +47,3 @@ From the root directory, execute:
 ```
 tox
 ```
-
