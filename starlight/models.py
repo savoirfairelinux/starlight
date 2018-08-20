@@ -47,7 +47,8 @@ class Competency(models.Model):
     experience = models.IntegerField(choices=EXPERIENCE_CHOICES)
 
     def __str__(self):
-        return '{}: Interest: {}/{}, Experience: {}/{}'.format(self.skill.name, self.interest, len(self.INTEREST_CHOICES), self.experience, len(self.EXPERIENCE_CHOICES))
+        return '{}: Interest: {}/{}, Experience: {}/{}'.format(
+            self.skill.name, self.interest, len(self.INTEREST_CHOICES), self.experience, len(self.EXPERIENCE_CHOICES))
 
 
 class Team(models.Model):

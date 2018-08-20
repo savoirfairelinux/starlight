@@ -9,11 +9,13 @@ matrix:
     - { python: 3.6, env: TOXENV=isort }
 
 install:
-  - pip install tox coveralls
-  - pip install -r requirements.txt
+  - pip3 install tox coveralls
+  - pip3 install -r requirements.txt
 
 before_script:
   - cp .env.json.example .env.json
+  - echo "{\"status\":\"done\",\"chunks\":{\"vendor\":[]}}" > /home/travis/build/savoirfairelinux/starlight/starlight/static/webpack-stats-vendor.json
+  - echo "{\"status\":\"done\",\"chunks\":{\"app\":[]}}" > /home/travis/build/savoirfairelinux/starlight/starlight/static/webpack-stats-app.json
 
 script:
   - tox -e $TOXENV

@@ -5,15 +5,21 @@
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
 from django.contrib import messages
-from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_protect
-
-from starlight.forms import EditForm, CompetencyForm, EmployeeForm, TeamForm, FilterTeamForm, AddtoTeamForm
-from starlight.models import Skill, Employee, Competency, Team
+from starlight.forms import (
+    AddtoTeamForm,
+    CompetencyForm,
+    EditForm,
+    EmployeeForm,
+    FilterTeamForm,
+    TeamForm
+)
+from starlight.models import Competency, Employee, Skill, Team
 
 
 def home(request):
@@ -38,10 +44,10 @@ def home(request):
     else:
         teams = Team.objects.all()
         employees = Employee.objects.all()
-        
     skills = Skill.objects.order_by('name')
 
-    return render(request, 'views/home.html', {'form': form, 'skills': skills, 'employees': employees, 'teams': teams, 'viewgroup': 'home'})
+    return render(request, 'views/home.html', {'form': form, 'skills': skills,
+                                               'employees': employees, 'teams': teams, 'viewgroup': 'home'})
 
 
 @csrf_protect
@@ -65,7 +71,8 @@ def edit_competency(request, employee, id):
         if form.is_valid():
             interest = form.cleaned_data['interest']
             experience = form.cleaned_data['experience']
-            competency_new, created = employee.competencies.all().get_or_create(skill=skill, interest=interest, experience=experience)
+            competency_new, created = employee.competencies.all()\
+                .get_or_create(skill=skill, interest=interest, experience=experience)
             if created:
                 employee.competencies.add(competency_new)
                 employee.competencies.remove(competency)
@@ -76,7 +83,8 @@ def edit_competency(request, employee, id):
     else:
         form = EditForm()
 
-    return render(request, 'profile_views/edit_competency.html', {'form': form, 'competency': competency, 'viewgroup': 'profile'})
+    return render(request, 'profile_views/edit_competency.html',
+                  {'form': form, 'competency': competency, 'viewgroup': 'profile'})
 
 
 def new_competency(request, employee):
@@ -128,7 +136,8 @@ def new_employee(request):
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             teams = form.cleaned_data['teams']
-            employee = Employee.objects.create(username=username, email=email, first_name=first_name, last_name=last_name)
+            employee = Employee.objects\
+                .create(username=username, email=email, first_name=first_name, last_name=last_name)
             employee.teams.add(*teams)
             employee.set_password(password)
             employee.save()
@@ -155,7 +164,8 @@ def view_team(request, id):
     else:
         form = AddtoTeamForm()
 
-    return render(request, 'views/team.html', {'form': form, 'team': team, 'employees': employees, 'viewgroup': 'teams'})
+    return render(request, 'views/team.html',
+                  {'form': form, 'team': team, 'employees': employees, 'viewgroup': 'teams'})
 
 
 @user_passes_test(lambda u: u.has_perm('starlight.can_change_team'))
@@ -163,7 +173,7 @@ def new_team(request):
     if request.method == 'POST':
         form = TeamForm(request.POST)
         if form.is_valid():
-            team = form.save()
+            form.save()
             return redirect('teams')
     else:
         form = TeamForm()
@@ -192,4 +202,5 @@ def edit_team(request, id):
     else:
         form = TeamForm()
 
-    return render(request, 'views/edit_team.html', {'team': team, 'form': form, 'viewgroup': 'teams', 'form_type': 'edit'})
+    return render(request, 'views/edit_team.html',
+                  {'team': team, 'form': form, 'viewgroup': 'teams', 'form_type': 'edit'})

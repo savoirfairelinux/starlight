@@ -1,7 +1,5 @@
 from django import template
 
-from starlight.models import Employee
-
 register = template.Library()
 
 

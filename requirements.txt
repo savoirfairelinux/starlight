@@ -1,5 +1,7 @@
 Django>=2.0
 django-webpack-loader
 psycopg2
+factory-boy
+djangorestframework
 
 django-debug-toolbar

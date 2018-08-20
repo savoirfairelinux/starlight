@@ -1,9 +1,13 @@
 from django import forms
 from django.contrib import admin
-from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserChangeForm, UserCreationForm
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.forms import (
+    ReadOnlyPasswordHashField,
+    UserChangeForm,
+    UserCreationForm
+)
+from starlight.models import Competency, Employee, Skill, Team
 
-from starlight.models import Skill, Competency, Employee, Team
 
 class MyUserCreationForm(UserCreationForm):
     """A form for creating new users. Includes all the required
@@ -35,11 +39,11 @@ class MyUserCreationForm(UserCreationForm):
 class MyUserChangeForm(UserChangeForm):
     """A form for updating users. Includes all the fields on
     the user, but replaces the password field with admin's
-    password hash display field.
-    """
-    password = ReadOnlyPasswordHashField(help_text= ("Raw passwords are not stored, so there is no way to see "
-                    "this user's password, but you can change the password "
-                    "using <a href=\"../password/\">this form</a>."))
+    password hash display field."""
+
+    password = ReadOnlyPasswordHashField(help_text="Raw passwords are not stored, so there is no way to see this "
+                                                   "user's password, but you can change the password using "
+                                                   "<a href=\"../password/\">this form</a>.")
 
     class Meta:
         model = Employee
@@ -51,19 +55,23 @@ class MyUserChangeForm(UserChangeForm):
         # field does not have access to the initial value
         return self.initial["password"]
 
+
 class UserAdmin(BaseUserAdmin):
     add_form = MyUserCreationForm
     form = MyUserChangeForm
     fieldsets = (
         (None, {
-            'fields': ('username', 'password', 'email', 'first_name', 'last_name', 'teams', 'user_permissions', 'competencies')}
-        ),
+            'fields': ('username', 'password', 'email', 'first_name',
+                       'last_name', 'teams', 'user_permissions', 'competencies')}
+         ),
     )
     add_fieldsets = (
         (None, {
-            'fields': ( 'username','password1', 'password2' , 'email', 'first_name', 'last_name', 'teams', 'user_permissions', 'competencies')}
-        ),
+            'fields': ('username', 'password1', 'password2', 'email', 'first_name',
+                       'last_name', 'teams', 'user_permissions', 'competencies')}
+         ),
     )
+
 
 admin.site.register(Skill)
 admin.site.register(Competency)
