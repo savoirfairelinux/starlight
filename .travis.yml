@@ -14,6 +14,8 @@ install:
 
 before_script:
   - cp .env.json.example .env.json
+  - echo "{}" > /home/travis/build/savoirfairelinux/starlight/starlight/static/webpack-stats-vendor.json
+  - echo "{}" > /home/travis/build/savoirfairelinux/starlight/starlight/static/webpack-stats-app.json
 
 script:
   - tox -e $TOXENV
