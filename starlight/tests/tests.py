@@ -79,6 +79,12 @@ class TestEmployees(TestCase):
         response = self.client.post(url, data, follow=True)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
+    def test_change_password(self):
+        data = {'new_password': 'test12345'}
+        url = reverse('change_password', kwargs={'id': self.test_user.id})
+        response = self.client.post(url, data, follow=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     def test_remove_employee(self):
         pass
 

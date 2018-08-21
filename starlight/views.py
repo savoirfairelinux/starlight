@@ -7,6 +7,7 @@
 from django.contrib import messages
 from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -216,7 +217,6 @@ def edit_profile(request, id):
         form = EmployeeEditForm(request.POST, employee=employee)
         if form.is_valid():
             employee.username = form.cleaned_data['username']
-            employee.set_password(form.cleaned_data['new_password'])
             employee.email = form.cleaned_data['email']
             employee.first_name = form.cleaned_data['first_name']
             employee.last_name = form.cleaned_data['last_name']
@@ -256,3 +256,19 @@ def new_skill(request):
         form = SkillForm()
 
     return render(request, 'skill_views/new_skill.html', {'form': form, 'viewgroup': 'skills'})
+
+
+def change_password(request, id):
+    employee = Employee.objects.get(pk=id)
+    if not request.user.has_perm('starlight.can_change_user') and not employee == request.user:
+        raise PermissionDenied({"message: You do not have permission to edit this"})
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            employee = form.save()
+            update_session_auth_hash(request, employee)
+            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+    else:
+        form = PasswordChangeForm(request.user)
+
+    return render(request, 'profile_views/change_password.html', {'form': form, 'viewgroup': 'profile'})

@@ -67,7 +67,6 @@ class AddtoTeamForm(forms.Form):
 
 class EmployeeEditForm(forms.Form):
     username = forms.CharField(label='Username', max_length=75, required=True)
-    new_password = forms.CharField(widget=PasswordInput(), required=True)
     email = forms.EmailField(max_length=150, required=True)
     first_name = forms.CharField(max_length=100, required=True)
     last_name = forms.CharField(max_length=100, required=True)

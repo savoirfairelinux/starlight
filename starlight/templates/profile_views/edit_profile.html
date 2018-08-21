@@ -10,18 +10,15 @@
   <div class="six wide column">
     <h1 class="ui black header">{% trans "Edit Profile: " %} {{ employee }}</h1>
 
+    <button class="ui fluid small blue button" onclick="location.href='{% url 'change_password' id=employee.id  %}'">Change Password</button>
+    <br>
+
     <form action="." method="post" class="ui large form" id="employee_edit_form">
         {% csrf_token %}
         <div class="field">
           <input name="username" id="username" type="text"  value="{{ employee.username }}">
           <div class="errors">
               {{ form.username.errors }}
-          </div>
-        </div>
-        <div class="field">
-          <input name="new_password" id="new_password" type="password" placeholder="New Password">
-          <div class="errors">
-              {{ form.new_password2.errors }}
           </div>
         </div>
         <div class="field">
