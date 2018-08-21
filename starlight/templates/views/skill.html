@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="ui center aligned grid container">
+  <div class="ten wide column">
+    <h1 class="ui black header">
+      {{ skill }}
+    </h1>
+    <div class="individual-skill-table">
+      <table class="ui inverted center aligned fluid black table">
+        <thead>
+          <tr>
+            <th>Employee</th>
+            <th>Interest</th>
+            <th>Experience</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for employee in employees.all %}
+          <tr>
+            <td>
+              {{ employee }}
+            </td>
+            <td>
+              {% for competency in competencies.all %}
+                  {% if competency in employee.competencies.all %}
+                      {{ competency.get_interest_display }}
+                  {% endif %}
+              {% endfor %}
+            </td>
+            <td>
+              {% for competency in competencies.all %}
+                  {% if competency in employee.competencies.all %}
+                      {{ competency.get_experience_display }}
+                  {% endif %}
+              {% endfor %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

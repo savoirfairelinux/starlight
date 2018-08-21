@@ -58,6 +58,10 @@ class TestEmployees(TestCase):
             name='Web',
             description='Developping web applications'
         )
+        cls.test_team2 = TeamFactory(
+            name='Mobile',
+            description='Developping mobile applications'
+        )
         cls.client = Client()
         cls.client.login(username='employee_user', password='test1234')
 
@@ -69,7 +73,11 @@ class TestEmployees(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_edit_employee(self):
-        pass
+        data = {'username': 'starlord', 'new_password': 'test1234',
+                'email': 'starlord@starlight.com', 'first_name': 'star', 'last_name': 'lord', 'teams': self.test_team2}
+        url = reverse('edit_profile', kwargs={'id': self.test_user.id})
+        response = self.client.post(url, data, follow=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_remove_employee(self):
         pass
@@ -118,7 +126,10 @@ class TestSkills(TestCase):
         cls.client.login(username='skill_user', password='test1234')
 
     def test_add_skill(self):
-        pass
+        data = {'name': 'technical_skill', 'is_technical': False}
+        url = reverse('new_skill')
+        response = self.client.post(url, data, follow=True)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_edit_skill(self):
         pass

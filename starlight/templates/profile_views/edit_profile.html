@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="ui center aligned container grid">
+  <div class="six wide column">
+    <h1 class="ui black header">{% trans "Edit Profile: " %} {{ employee }}</h1>
+
+    <form action="." method="post" class="ui large form" id="employee_edit_form">
+        {% csrf_token %}
+        <div class="field">
+          <input name="username" id="username" type="text"  value="{{ employee.username }}">
+          <div class="errors">
+              {{ form.username.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <input name="new_password" id="new_password" type="password" placeholder="New Password">
+          <div class="errors">
+              {{ form.new_password2.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <input name="email" id="email" type="email" value="{{ employee.email }}">
+          <div class="errors">
+              {{ form.email.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <input name="first_name" id="first_name" type="text" value="{{ employee.first_name }}">
+          <div class="errors">
+              {{ form.first_name.errors }}
+          </div>
+        </div>
+        <div class="field">
+          <input name="last_name" id="last_name" type="text" value="{{ employee.last_name }}">
+          <div class="errors">
+              {{ form.last_name.errors }}
+          </div>
+        </div>
+        {% if 'starlight.can_change_user' in perms%}
+        <div class="field">
+          <select class="ui selection dropdown" name="teams" id="teams">
+              {% for key, teams_choice in form.fields.teams.choices %}
+                  <option value="{{ key }}" {% if form.team.value == key|floatformat:"0" %} selected {% endif %}> {{ teams_choice }}</option>
+              {% endfor %}
+          </select>
+        </div>
+        {% endif %}
+        <button class="ui fluid large blue button" type="submit" value="Submit">Save</button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
