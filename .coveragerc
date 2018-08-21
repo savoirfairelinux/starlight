@@ -1,0 +1,2 @@
+[run]
+omit = *site-packages*,/usr/*,/root/*, .eggs*, *virtualenv*, */__init__.py, tests/*, setup.py, */migrations/*, */settings/*, manage.py, fixtures/*, starlight/settings.py
