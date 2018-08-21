@@ -85,7 +85,7 @@ def edit_competency(request, employee, id):
     else:
         form = EditForm()
 
-    return render(request, 'profile_views/edit_competency.html',
+    return render(request, 'competency_views/edit_competency.html',
                   {'form': form, 'competency': competency, 'viewgroup': 'profile'})
 
 
@@ -114,7 +114,7 @@ def new_competency(request, employee):
     else:
         form = CompetencyForm(employee=employee)
 
-    return render(request, 'profile_views/new_competency.html', {'form': form, 'viewgroup': 'profile'})
+    return render(request, 'competency_views/new_competency.html', {'form': form, 'viewgroup': 'profile'})
 
 
 def logout_view(request):
@@ -124,7 +124,7 @@ def logout_view(request):
 
 def all_profiles(request):
     employees = Employee.objects.all()
-    return render(request, 'views/all_profiles.html', {'employees': employees, 'viewgroup': 'all_profiles'})
+    return render(request, 'profile_views/all_profiles.html', {'employees': employees, 'viewgroup': 'all_profiles'})
 
 
 @user_passes_test(lambda u: u.has_perm('starlight.can_change_user'))
@@ -147,12 +147,12 @@ def new_employee(request):
     else:
         form = EmployeeForm()
 
-    return render(request, 'views/new_employee.html', {'form': form})
+    return render(request, 'profile_views/new_employee.html', {'form': form})
 
 
 def view_all_teams(request):
     teams = Team.objects.all()
-    return render(request, 'views/teams.html', {'teams': teams, 'viewgroup': 'teams'})
+    return render(request, 'team_views/teams.html', {'teams': teams, 'viewgroup': 'teams'})
 
 
 def view_team(request, id):
@@ -166,7 +166,7 @@ def view_team(request, id):
     else:
         form = AddtoTeamForm()
 
-    return render(request, 'views/team.html',
+    return render(request, 'team_views/team.html',
                   {'form': form, 'team': team, 'employees': employees, 'viewgroup': 'teams'})
 
 
@@ -180,7 +180,7 @@ def new_team(request):
     else:
         form = TeamForm()
 
-    return render(request, 'views/edit_team.html', {'form': form, 'viewgroup': 'teams', 'form_type': 'new'})
+    return render(request, 'team_views/edit_team.html', {'form': form, 'viewgroup': 'teams', 'form_type': 'new'})
 
 
 @user_passes_test(lambda u: u.has_perm('starlight.can_change_team') and u.has_perm('starlight.can_change_user'))
@@ -204,7 +204,7 @@ def edit_team(request, id):
     else:
         form = TeamForm()
 
-    return render(request, 'views/edit_team.html',
+    return render(request, 'team_views/edit_team.html',
                   {'team': team, 'form': form, 'viewgroup': 'teams', 'form_type': 'edit'})
 
 
@@ -233,7 +233,7 @@ def edit_profile(request, id):
 
 def view_all_skills(request):
     skills = Skill.objects.all()
-    return render(request, 'views/skills.html', {'skills': skills, 'viewgroup': 'skills'})
+    return render(request, 'skill_views/skills.html', {'skills': skills, 'viewgroup': 'skills'})
 
 
 def view_skill(request, id):
@@ -241,8 +241,8 @@ def view_skill(request, id):
     competencies = skill.competency_set.all()
     employees = Employee.objects.filter(competencies__skill__id=id)
 
-    return render(request, 'views/skill.html', {'skill': skill, 'employees': employees,
-                                                'competencies': competencies, 'viewgroup': 'skills'})
+    return render(request, 'skill_views/skill.html', {'skill': skill, 'employees': employees,
+                                                      'competencies': competencies, 'viewgroup': 'skills'})
 
 
 @user_passes_test(lambda u: u.has_perm('starlight.can_change_skill'))
@@ -255,4 +255,4 @@ def new_skill(request):
     else:
         form = SkillForm()
 
-    return render(request, 'views/new_skill.html', {'form': form, 'viewgroup': 'skills'})
+    return render(request, 'skill_views/new_skill.html', {'form': form, 'viewgroup': 'skills'})
