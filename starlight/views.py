@@ -81,7 +81,7 @@ def edit_competency(request, employee, id):
                 employee.competencies.remove(competency)
                 messages.success(request, 'Competency succesfully edited')
 
-            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+                return redirect('profile', id=employee.id)
 
     else:
         form = EditForm()
@@ -110,7 +110,7 @@ def new_competency(request, employee):
                 employee.competencies.add(competency_new)
                 messages.success(request, 'Competency successfully added')
 
-            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+            return redirect('profile', id=employee.id)
 
     else:
         form = CompetencyForm(employee=employee)
@@ -144,7 +144,7 @@ def new_employee(request):
             employee.teams.add(*teams)
             employee.set_password(password)
             employee.save()
-            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+            return redirect('profile', id=employee.id)
     else:
         form = EmployeeForm()
 
@@ -223,7 +223,7 @@ def edit_profile(request, id):
             employee.teams.add(*form.cleaned_data['teams'])
             employee.save()
             update_session_auth_hash(request, employee)
-            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+            return redirect('profile', id=employee.id)
     else:
         form = EmployeeEditForm(employee=employee)
 
@@ -267,7 +267,7 @@ def change_password(request, id):
         if form.is_valid():
             employee = form.save()
             update_session_auth_hash(request, employee)
-            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+            return redirect('profile', id=employee.id)
     else:
         form = PasswordChangeForm(request.user)
 
