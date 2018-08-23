@@ -16,7 +16,29 @@ class TestAuthentication(TestCase):
             email='testadmin@example.com',
             password='test1234'
         )
+        cls.test_team = TeamFactory(
+            name='Web1',
+            description='Developping web applications'
+        )
         cls.client = Client()
+
+    def test_home(self):
+        url = reverse('home')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_filter_team_home(self):
+        self.test_user.teams.add(self.test_team)
+        data = {'name': self.test_team.id}
+        url = reverse('home')
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_filter_team_unassigned(self):
+        data = {'name': 'unassigned'}
+        url = reverse('home')
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 200)
 
     def test_login(self):
         data = {'username': 'authentication_user', 'password': 'test1234'}
@@ -46,8 +68,18 @@ class TestCompetencies(TestCase):
             interest=3,
             experience=4
         )
+        cls.test_duplicate_competency = CompetencyFactory(
+            skill=cls.test_skill,
+            interest=1,
+            experience=2
+        )
         cls.client = Client()
         cls.client.login(username='competency_user', password='test1234')
+
+    def test_get_add_competency_page(self):
+        url = reverse('new_competency', kwargs={'employee': self.test_user.id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_add_competency(self):
         data = {'skill': self.test_skill.id, 'interest': 1, 'experience': 5}
@@ -55,6 +87,20 @@ class TestCompetencies(TestCase):
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)  # For all tests, assure redirect according to view function
         self.assertEqual(response['Location'], reverse('profile', kwargs={'id': self.test_user.id}))
+
+    def test_add_competency_skill_exists(self):
+        self.test_user.competencies.add(self.test_duplicate_competency)
+        data = {'skill': self.test_skill.id, 'interest': 2, 'experience': 4}
+        url = reverse('new_competency', kwargs={'employee': self.test_user.id})
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], reverse('profile', kwargs={'id': self.test_user.id}))
+        self.assertEqual(len(self.test_user.competencies.all()), 1)
+
+    def test_get_edit_competency_page(self):
+        url = reverse('edit_competency', kwargs={'employee': self.test_user.id, 'id': self.test_competency.id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_edit_competency(self):
         data = {'interest': 1, 'experience': 5}
@@ -87,6 +133,11 @@ class TestEmployees(TestCase):
         cls.client = Client()
         cls.client.login(username='employee_user', password='test1234')
 
+    def test_get_add_employee_page(self):
+        url = reverse('new_employee')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
     def test_add_employee(self):
         data = {'username': 'starboy', 'password1': 'test12345', 'password2': 'test12345',
                 'email': 'starboy@starlight.com', 'first_name': 'star', 'last_name': 'boy', 'teams': self.test_team.id}
@@ -95,6 +146,11 @@ class TestEmployees(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['Location'], reverse('profile', kwargs={'id': 2}))  # Hardcoded ID to 2
 
+    def test_get_edit_employee_page(self):
+        url = reverse('edit_profile', kwargs={'id': self.test_user.id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
     def test_edit_employee(self):
         data = {'username': 'starlord', 'email': 'starlord@starlight.com',
                 'first_name': 'star', 'last_name': 'lord', 'teams': self.test_team2.id}
@@ -102,6 +158,11 @@ class TestEmployees(TestCase):
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['Location'], reverse('profile', kwargs={'id': self.test_user.id}))
+
+    def test_get_change_password_page(self):
+        url = reverse('change_password', kwargs={'id': self.test_user.id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_change_password(self):
         data = {'old_password': 'test1234', 'new_password1': 'test123456', 'new_password2': 'test123456'}
@@ -112,6 +173,11 @@ class TestEmployees(TestCase):
 
     def test_view_all_employees(self):
         url = reverse('all_profiles')
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_profile(self):
+        url = reverse('profile', kwargs={'id': self.test_user.id})
         response = self.client.post(url)
         self.assertEqual(response.status_code, 200)
 
@@ -134,6 +200,11 @@ class TestTeams(TestCase):
         cls.client = Client()
         cls.client.login(username='team_user', password='test1234')
 
+    def test_get_add_team_page(self):
+        url = reverse('new_team')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
     def test_add_team(self):
         data = {'name': 'test', 'description': 'For testing teams'}
         url = reverse('new_team')
@@ -141,12 +212,22 @@ class TestTeams(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['Location'], reverse('teams'))
 
+    def test_get_edit_team_page(self):
+        url = reverse('edit_team', kwargs={'id': self.test_team.id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
     def test_edit_team(self):
         data = {'name': self.test_team.name, 'description': 'description changed!'}
         url = reverse('edit_team', kwargs={'id': self.test_team.id})
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['Location'], reverse('team', kwargs={'id': self.test_team.id}))
+
+    def test_view_specific_team(self):
+        url = reverse('team', kwargs={'id': self.test_team.id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_view_all_teams(self):
         url = reverse('teams')
@@ -188,6 +269,11 @@ class TestSkills(TestCase):
         )
         cls.client = Client()
         cls.client.login(username='skill_user', password='test1234')
+
+    def test_get_add_skill_page(self):
+        url = reverse('new_skill')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_add_skill(self):
         data = {'name': 'technical_skill', 'is_technical': False}
