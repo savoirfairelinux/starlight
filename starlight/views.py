@@ -9,7 +9,6 @@ from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_protect
 from starlight.forms import (

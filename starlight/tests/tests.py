@@ -1,12 +1,32 @@
 from django.test import Client, TestCase
 from django.urls import reverse
-from rest_framework import status
 from starlight.models import Employee
 from starlight.tests.factories import (
     CompetencyFactory,
     SkillFactory,
     TeamFactory
 )
+
+
+class TestAuthentication(TestCase):
+
+    def setUp(cls):
+        cls.test_user = Employee.objects.create_user(
+            username='authentication_user',
+            email='testadmin@example.com',
+            password='test1234'
+        )
+        cls.client = Client()
+
+    def test_login(self):
+        data = {'username': 'authentication_user', 'password': 'test1234'}
+        url = reverse('login')
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], reverse('home'))
+
+    def test_logout(self):
+        pass
 
 
 class TestCompetencies(TestCase):
@@ -90,6 +110,11 @@ class TestEmployees(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['Location'], reverse('profile', kwargs={'id': self.test_user.id}))
 
+    def test_view_all_employees(self):
+        url = reverse('all_profiles')
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 200)
+
     def test_remove_employee(self):
         pass
 
@@ -123,6 +148,28 @@ class TestTeams(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['Location'], reverse('team', kwargs={'id': self.test_team.id}))
 
+    def test_view_all_teams(self):
+        url = reverse('teams')
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_add_employee_to_team(self):
+        data = {'employee': self.test_user.id}
+        url = reverse('team', kwargs={'id': self.test_team.id})
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(self.test_user.teams.all()), 1)
+
+    def test_remove_employee_from_team(self):
+        self.test_user.teams.add(self.test_team)
+        self.assertEqual(len(self.test_user.teams.all()), 1)
+        data = {'employee': self.test_user.id}
+        url = reverse('remove_from_team', kwargs={'team': self.test_team.id, 'id': self.test_user.id})
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response['Location'], reverse('team', kwargs={'id': self.test_team.id}))
+        self.assertEqual(len(self.test_user.teams.all()), 0)
+
     def test_remove_team(self):
         pass
 
@@ -135,6 +182,10 @@ class TestSkills(TestCase):
             email='test@example.com',
             password='test1234'
         )
+        cls.test_skill = SkillFactory(
+            name='DockerTest',
+            is_technical=True
+        )
         cls.client = Client()
         cls.client.login(username='skill_user', password='test1234')
 
@@ -144,6 +195,16 @@ class TestSkills(TestCase):
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['Location'], reverse('all_skills'))
+
+    def test_view_all_skills(self):
+        url = reverse('all_skills')
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_specific_skill(self):
+        url = reverse('skill', kwargs={'id': self.test_skill.id})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_edit_skill(self):
         pass
