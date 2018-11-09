@@ -5,18 +5,20 @@
 # published by the Free Software Foundation, either version 3 of the
 # License, or (at your option) any later version.
 from django.contrib import messages
-from django.contrib.auth import logout
+from django.contrib.auth import logout, update_session_auth_hash
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import PermissionDenied
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_protect
 from starlight.forms import (
     AddtoTeamForm,
     CompetencyForm,
     EditForm,
+    EmployeeEditForm,
     EmployeeForm,
     FilterTeamForm,
+    SkillForm,
     TeamForm
 )
 from starlight.models import Competency, Employee, Skill, Team
@@ -78,12 +80,12 @@ def edit_competency(request, employee, id):
                 employee.competencies.remove(competency)
                 messages.success(request, 'Competency succesfully edited')
 
-            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+                return redirect('profile', id=employee.id)
 
     else:
         form = EditForm()
 
-    return render(request, 'profile_views/edit_competency.html',
+    return render(request, 'competency_views/edit_competency.html',
                   {'form': form, 'competency': competency, 'viewgroup': 'profile'})
 
 
@@ -107,12 +109,12 @@ def new_competency(request, employee):
                 employee.competencies.add(competency_new)
                 messages.success(request, 'Competency successfully added')
 
-            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+            return redirect('profile', id=employee.id)
 
     else:
         form = CompetencyForm(employee=employee)
 
-    return render(request, 'profile_views/new_competency.html', {'form': form, 'viewgroup': 'profile'})
+    return render(request, 'competency_views/new_competency.html', {'form': form, 'viewgroup': 'profile'})
 
 
 def logout_view(request):
@@ -122,7 +124,7 @@ def logout_view(request):
 
 def all_profiles(request):
     employees = Employee.objects.all()
-    return render(request, 'views/all_profiles.html', {'employees': employees, 'viewgroup': 'all_profiles'})
+    return render(request, 'profile_views/all_profiles.html', {'employees': employees, 'viewgroup': 'all_profiles'})
 
 
 @user_passes_test(lambda u: u.has_perm('starlight.can_change_user'))
@@ -141,16 +143,16 @@ def new_employee(request):
             employee.teams.add(*teams)
             employee.set_password(password)
             employee.save()
-            return HttpResponseRedirect('/{}/profile/'.format(employee.id))
+            return redirect('profile', id=employee.id)
     else:
         form = EmployeeForm()
 
-    return render(request, 'views/new_employee.html', {'form': form})
+    return render(request, 'profile_views/new_employee.html', {'form': form})
 
 
 def view_all_teams(request):
     teams = Team.objects.all()
-    return render(request, 'views/teams.html', {'teams': teams, 'viewgroup': 'teams'})
+    return render(request, 'team_views/teams.html', {'teams': teams, 'viewgroup': 'teams'})
 
 
 def view_team(request, id):
@@ -164,7 +166,7 @@ def view_team(request, id):
     else:
         form = AddtoTeamForm()
 
-    return render(request, 'views/team.html',
+    return render(request, 'team_views/team.html',
                   {'form': form, 'team': team, 'employees': employees, 'viewgroup': 'teams'})
 
 
@@ -178,7 +180,7 @@ def new_team(request):
     else:
         form = TeamForm()
 
-    return render(request, 'views/edit_team.html', {'form': form, 'viewgroup': 'teams', 'form_type': 'new'})
+    return render(request, 'team_views/edit_team.html', {'form': form, 'viewgroup': 'teams', 'form_type': 'new'})
 
 
 @user_passes_test(lambda u: u.has_perm('starlight.can_change_team') and u.has_perm('starlight.can_change_user'))
@@ -202,5 +204,70 @@ def edit_team(request, id):
     else:
         form = TeamForm()
 
-    return render(request, 'views/edit_team.html',
+    return render(request, 'team_views/edit_team.html',
                   {'team': team, 'form': form, 'viewgroup': 'teams', 'form_type': 'edit'})
+
+
+def edit_profile(request, id):
+    employee = Employee.objects.get(pk=id)
+    if not request.user.has_perm('starlight.can_change_user') and not employee == request.user:
+        raise PermissionDenied({"message: You do not have permission to edit this"})
+    if request.method == 'POST':
+        form = EmployeeEditForm(request.POST, employee=employee)
+        if form.is_valid():
+            employee.username = form.cleaned_data['username']
+            employee.email = form.cleaned_data['email']
+            employee.first_name = form.cleaned_data['first_name']
+            employee.last_name = form.cleaned_data['last_name']
+            employee.teams.add(*form.cleaned_data['teams'])
+            employee.save()
+            update_session_auth_hash(request, employee)
+            return redirect('profile', id=employee.id)
+    else:
+        form = EmployeeEditForm(employee=employee)
+
+    return render(request, 'profile_views/edit_profile.html',
+                  {'form': form, 'employee': employee, 'viewgroup': 'profile'})
+
+
+def view_all_skills(request):
+    skills = Skill.objects.all()
+    return render(request, 'skill_views/skills.html', {'skills': skills, 'viewgroup': 'skills'})
+
+
+def view_skill(request, id):
+    skill = Skill.objects.get(pk=id)
+    competencies = skill.competency_set.all()
+    employees = Employee.objects.filter(competencies__skill__id=id)
+
+    return render(request, 'skill_views/skill.html', {'skill': skill, 'employees': employees,
+                                                      'competencies': competencies, 'viewgroup': 'skills'})
+
+
+@user_passes_test(lambda u: u.has_perm('starlight.can_change_skill'))
+def new_skill(request):
+    if request.method == 'POST':
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('all_skills')
+    else:
+        form = SkillForm()
+
+    return render(request, 'skill_views/new_skill.html', {'form': form, 'viewgroup': 'skills'})
+
+
+def change_password(request, id):
+    employee = Employee.objects.get(pk=id)
+    if not request.user.has_perm('starlight.can_change_user') and not employee == request.user:
+        raise PermissionDenied({"message: You do not have permission to edit this"})
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            employee = form.save()
+            update_session_auth_hash(request, employee)
+            return redirect('profile', id=employee.id)
+    else:
+        form = PasswordChangeForm(request.user)
+
+    return render(request, 'profile_views/change_password.html', {'form': form, 'viewgroup': 'profile'})

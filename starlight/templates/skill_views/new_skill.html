@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="ui center aligned container grid">
+  <div class="six wide column">
+    <h1 class="ui black header">{% trans "New Skill" %}</h1>
+
+    <form action="." method="post" class="ui large form" id="skill_form">
+        {% csrf_token %}
+        <div class="field">
+          <input name="name" id="name" type="text" placeholder="Name" {% if not form.name.value == None %} value="{{ form.name.value }}" {% endif %}>
+          <div class="errors">
+              {{ form.name.errors }}
+          </div>
+        </div>
+        <div class="inline fields">
+            <label>Type: </label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="is_technical" value=True checked="checked">
+                <label>Technical</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="is_technical" value=False>
+                <label>Non-Technical</label>
+              </div>
+            </div>
+          </div>
+        <button class="ui fluid large blue button" type="submit" value="Submit">Create</button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

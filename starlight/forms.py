@@ -63,3 +63,32 @@ class FilterTeamForm(forms.Form):
 
 class AddtoTeamForm(forms.Form):
     employee = forms.ModelChoiceField(queryset=Employee.objects.all())
+
+
+class EmployeeEditForm(forms.Form):
+    username = forms.CharField(label='Username', max_length=75, required=True)
+    email = forms.EmailField(max_length=150, required=True)
+    first_name = forms.CharField(max_length=100, required=True)
+    last_name = forms.CharField(max_length=100, required=True)
+    teams = forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple,
+                                           required=False, queryset=Team.objects.all())
+
+    def __init__(self, *args, **kwargs):
+        self.employee = kwargs.pop('employee')  # cache the user object you pass in
+        super(EmployeeEditForm, self).__init__(*args, **kwargs)  # and carry on to init the form
+
+
+class SkillForm(forms.ModelForm):
+    class Meta:
+        model = Skill
+        fields = ['name', 'is_technical']
+    name = forms.CharField(label='name', max_length=75, required=True,
+                           error_messages={'error_duplicate': 'Skill with this name already exists'})
+    is_technical = forms.ChoiceField(choices=[(True, 'Technical'), (False, 'Non-Technical')])
+
+    def clean_name(self):
+        for skill in Skill.objects.all():
+            if skill.name == self.cleaned_data['name']:
+                raise forms.ValidationError(self.fields['name'].error_messages['error_duplicate'])
+
+        return self.cleaned_data['name']

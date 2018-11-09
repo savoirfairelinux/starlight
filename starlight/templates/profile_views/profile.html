@@ -9,8 +9,19 @@
 <div class="ui center aligned grid container">
   <div class="ten wide column">
     <h1 class="ui black header">
-      {{ employee }}
+    <table class="employee_edit" align="center">
+      <tr>
+          <td>
+             {{ employee }}
+          </td>
+          {% if 'starlight.can_change_user' in perms or user == employee %}
+              <td>
+                <button class="ui fluid tiny yellow button" onclick="location.href='{% url 'edit_profile' id=employee.id %}'">Edit</button>
+              </td>
+          {% endif %}
+      </tr>
       <br>
+    </table>
       {% trans "Team(s): " %}
       {% for team in employee.teams.all %}
         {{ team.name }}
